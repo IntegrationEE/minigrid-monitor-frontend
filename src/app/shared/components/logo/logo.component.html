@@ -1,0 +1,22 @@
+<div [ngClass]="className"
+     class="text-center">
+  <a *ngIf="isAuthenticated else simpleLogo"
+     class="logo-link"
+     [routerLink]="redirectLink">
+    <img class="logo"
+         [src]="logoUrl">
+
+    <span class="logo-title">
+      Mini-Grid Monitor Dashboard
+    </span>
+  </a>
+
+  <ng-template #simpleLogo>
+    <img class="logo"
+         [src]="logoUrl">
+
+    <span class="logo-title">
+      Mini-Grid Monitor Dashboard
+    </span>
+  </ng-template>
+</div>

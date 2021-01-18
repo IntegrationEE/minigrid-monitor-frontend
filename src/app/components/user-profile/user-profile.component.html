@@ -1,0 +1,23 @@
+<div class="container-fluid pl-150 pr-150 pb-100">
+  <app-breadcrumbs [parent]="parent"></app-breadcrumbs>
+
+  <div class="container-fluid">
+    <div class="title">My account</div>
+    <mat-card class="pl-100 py-50 pr-150 d-flex flex-column">
+      <mat-tab-group mat-align-tabs="center"
+                     class="custom-tabs">
+        <mat-tab label="Details">
+          <ng-template matTabContent>
+            <app-details></app-details>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Password">
+          <ng-template matTabContent>
+            <app-password></app-password>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+</div>

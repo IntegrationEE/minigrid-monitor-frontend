@@ -1,0 +1,21 @@
+<div class="row mt-4 mx-0">
+  <app-site-menu class="col-md-3"
+                 [setMode]="menuMode"
+                 (onPageChange)="changePage($event)">
+  </app-site-menu>
+
+  <div class="col-md-8 d-flex justify-content-center"
+       [ngSwitch]="currentPage">
+    <app-site-info *ngSwitchCase="pages.INFO"
+                   class="w-100">
+    </app-site-info>
+
+    <app-technical-specs *ngSwitchCase="pages.TECHNICAL"
+                         class="w-100">
+    </app-technical-specs>
+
+    <app-financial-details *ngSwitchCase="pages.FINANCIAL"
+                           class="w-100">
+    </app-financial-details>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<div class="modal-container"
+     [ngSwitch]="data.action">
+  <h1 mat-dialog-title>{{capitalize(data.action)}} Integration</h1>
+  <div mat-dialog-content
+       *ngSwitchCase="actionType.DELETE">
+    <p>Are you certain to remove this Integration?</p>
+  </div>
+
+  <ng-container *ngSwitchDefault>
+    <form [formGroup]="form"
+          *ngIf="data">
+      <div mat-dialog-content>
+        <div class="row">
+          <div class="col-md-6 pb-4">
+            <h6>Configuration</h6>
+            <mat-form-field>
+              <input matInput
+                     placeholder="Name"
+                     formControlName="name"
+                     required>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput
+                     placeholder="Token"
+                     formControlName="token"
+                     required>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput
+                     placeholder="Question hash"
+                     formControlName="questionHash"
+                     required>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input type="number"
+                     matInput
+                     placeholder="Interval (day)"
+                     formControlName="interval"
+                     required>
+            </mat-form-field>
+
+            <mat-checkbox class="d-block"
+                          id="isActive"
+                          name="isActive"
+                          formControlName="isActive">
+              Is Active
+            </mat-checkbox>
+          </div>
+
+          <div class="col-md-6 pb-4">
+            <h6>
+              Steps:
+              <span class="circle float-right mr-4 pointer"
+                    matTooltip="Add step"
+                    (click)="addStep()"
+                    matTooltipPosition="above">
+                +
+              </span>
+            </h6>
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let step of data.model.steps; let i = index"
+                                   (opened)="data.model.steps[i].isOpen = true"
+                                   (closed)="data.model.steps[i].isOpen = false"
+                                   class="mt-3"
+                                   [expanded]="data.model.steps[i].isOpen"
+                                   [hidden]="data.model.steps.length < 1">
+                <mat-expansion-panel-header>
+                  <div class="trash-icon">
+                    <img [src]="icons.trash"
+                         matTooltip="Delete step"
+                         (click)="removeStep(i)"
+                         matTooltipPosition="above"
+                         class="icon-medium pull-right mr-3 pointer">
+                  </div>
+                  <mat-panel-title>
+                    Step: {{step.name}}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-form-field>
+                  <input matInput
+                         formControlName="step_{{step.timestamp}}_name"
+                         id="step_{{step.timestamp}}_name"
+                         placeholder="Name"
+                         required>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input matInput
+                         formControlName="step_{{step.timestamp}}_function"
+                         id="step_{{step.timestamp}}_function"
+                         placeholder="Function"
+                         onkeypress="return event.charCode != 32"
+                         required>
+                </mat-form-field>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <div class="dialog-buttons-container"
+       mat-dialog-actions>
+    <button mat-flat-button
+            mat-dialog-close>
+      Cancel
+    </button>
+    <button mat-stroked-button
+            color="primary"
+            [disabled]="form?.invalid || loading"
+            (click)="onConfirm()">
+      Confirm
+    </button>
+  </div>
+</div>

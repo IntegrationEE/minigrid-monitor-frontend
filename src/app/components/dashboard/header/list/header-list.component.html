@@ -1,0 +1,121 @@
+<section class="h-list mb-4 custom-table">
+  <label class="h-list__title">Selected sites</label>
+
+  <mat-table [dataSource]="dataSource"
+             class="mat-elevation-z8">
+
+    <ng-container [matColumnDef]="columns.SITE">
+      <mat-header-cell *matHeaderCellDef
+                       class="cell-title">
+        <span class="ellipsis-cell"
+              matTooltip="Site">
+          Site
+        </span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class="ellipsis-cell cell-focus"
+              [matTooltip]="element.name"
+              (click)="onSiteClick(element, origin, siteTooltip)"
+              #origin>
+          {{element.name}}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container [matColumnDef]="columns.STATE">
+      <mat-header-cell *matHeaderCellDef
+                       class="cell-title">
+        <span class="ellipsis-cell"
+              [matTooltip]="administrativeUnitLabel">
+          {{ administrativeUnitLabel }}
+        </span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class="ellipsis-cell"
+              [matTooltip]="element.state">
+          {{element.state}}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container [matColumnDef]="columns.PROGRAMME">
+      <mat-header-cell *matHeaderCellDef
+                       class="cell-title">
+        <span class="ellipsis-cell"
+              matTooltip="Programme">
+          Programme
+        </span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class="ellipsis-cell"
+              [matTooltip]="element.programme">
+          {{element.programme}}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container [matColumnDef]="columns.COMPANY">
+      <mat-header-cell *matHeaderCellDef
+                       class="cell-title">
+        <span class="ellipsis-cell"
+              [matTooltip]="organisationLabel">
+          {{ organisationLabel }}
+        </span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"
+                [ngClass]="{'blurred noselect': isGuest }">
+        <span class="ellipsis-cell"
+              [matTooltip]="isGuest ? '' : element.company">
+          {{element.company}}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container [matColumnDef]="columns.CAPACITY">
+      <mat-header-cell *matHeaderCellDef
+                       class="pr-0 small-extended-cell cell-title">
+        <span class="ellipsis-cell"
+              matTooltip="Capacity [kW]">
+          Capacity [kW]
+        </span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"
+                class="small-extended-cell">
+        <span class="number-value">
+          {{element.renewableCapacity}}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"
+                    class=" table_customization"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="5"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+</section>
+
+<ng-template #siteTooltip
+             let-close="close">
+  <div class="leaflet-popup custom">
+    <div class="leaflet-popup-content-wrapper">
+      <div class="leaflet-popup-content">
+        <div (click)="close({changeToSiteView: true})">
+          <u>Visit site 🡢</u>
+        </div>
+      </div>
+    </div>
+
+    <div class="leaflet-popup-tip-container">
+      <div class="leaflet-popup-tip"></div>
+    </div>
+
+    <a class="pop-over-close-button"
+       (click)="close({changeToSiteView: false})">
+      ×
+    </a>
+  </div>
+</ng-template>

@@ -1,0 +1,50 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "src",
+    "importHelpers": true,
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "module": "esnext",
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
+    "paths": {
+      "@env/*": [
+        "environments/*"
+      ],
+      "@core/*": [
+        "app/core/*"
+      ],
+      "@auth/*":[
+        "app/components/auth/*"
+      ],
+      "@dashboard/*": [
+        "app/components/dashboard/*"
+      ],
+      "@admin/*": [
+        "app/components/admin/*"
+      ],
+      "@sites/*": [
+        "app/components/site-panel/*"
+      ],
+      "@indicators/*": [
+        "app/components/programme-indicators-panel/*"
+      ],
+      "@shared/*":[
+        "app/shared/*"
+      ]
+    }
+  }
+}

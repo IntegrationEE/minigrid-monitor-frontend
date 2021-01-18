@@ -1,0 +1,50 @@
+<button class="close"
+        (click)="close()"
+        mat-icon-button>
+  <mat-icon>close</mat-icon>
+</button>
+
+<div class="row"
+     *ngIf="data">
+  <div class="col-md-8 offset-md-4">
+    <mat-list>
+      <mat-list-item>
+        <div matLine>
+          <b>Summary</b>
+        </div>
+
+        <div matLine
+             class="my-2">
+          Inserted: <b>{{data.inserted}} </b>
+        </div>
+
+        <div matLine>
+          Updated: <b>{{data.updated}} </b>
+        </div>
+
+        <div matLine
+             class="mt-2">
+          N/As: <b>{{data.notApplicable}} </b>
+        </div>
+
+        <div matLine
+             class="mt-2">
+          Progress: <b>{{progress() | number}} %</b>
+        </div>
+
+        <div matLine
+             class="mt-2">
+          Outliers:
+          <div *ngIf="data.outliers?.length;else none_content">
+            <div class="ml-3"
+                 *ngFor="let element of data.outliers">
+              Year: <b>{{ element.year }}</b> Month: <b>{{ element.month }}</b>
+            </div>
+          </div>
+          <ng-template #none_content><b>None</b></ng-template>
+        </div>
+
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

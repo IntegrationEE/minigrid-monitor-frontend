@@ -1,0 +1,231 @@
+<form *ngIf="form"
+      [formGroup]="form">
+  <div class="d-flex">
+    <div class="form-group w-50 mr-4">
+      <label for="renewableTechnology">
+        Renewable Technology
+        <app-info-icon [tooltip]="tooltips.RENEWABLE_TECHNOLOGY"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Select Technology ..."
+                    required
+                    id="renewableTechnology"
+                    formControlName="renewableTechnology">
+          <mat-option *ngFor="let option of renewableTechnologies"
+                      [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('renewableTechnology')">
+          {{getError('renewableTechnology')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group w-50">
+      <label for="renewableCapacity">
+        Renewable Capacity
+        <app-info-icon [tooltip]="tooltips.RENEWABLE_CAPACITY"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input type="number"
+               matInput
+               id="renewableCapacity"
+               placeholder="e.g. 100 kW"
+               formControlName="renewableCapacity"
+               required
+               [min]="renewableCapacityMin"
+               [max]="renewableCapacityMax">
+        <mat-error *ngIf="hasError('renewableCapacity')">
+          {{getError('renewableCapacity')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <div class="form-group w-50 mr-4">
+      <label for="conventionalTechnology">
+        Conventional Technology
+        <app-info-icon [tooltip]="tooltips.CONVENTIONAL_TECHNOLOGY"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Select Technology ..."
+                    id="conventionalTechnology"
+                    formControlName="conventionalTechnology">
+          <mat-option [value]="-1">None</mat-option>
+          <mat-option *ngFor="let option of conventionalTechnologies"
+                      [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group w-50">
+      <label for="conventionalCapacity">
+        Conventional Capacity
+        <app-info-icon [tooltip]="tooltips.CONVENTIONAL_CAPACITY"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input type="number"
+               matInput
+               id="conventionalCapacity"
+               placeholder="e.g. 100 kW"
+               formControlName="conventionalCapacity"
+               [required]="form.value.conventionalTechnology !== -1 && form.value.conventionalTechnology !== null"
+               [min]="conventionalCapacityMin"
+               [max]="conventionalCapacityMax">
+        <mat-error *ngIf="hasError('conventionalCapacity')">
+          {{getError('conventionalCapacity')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <div class="form-group w-50 mr-4">
+      <label for="storageTechnology">
+        Storage Technology
+        <app-info-icon [tooltip]="tooltips.STORAGE_TECHNOLOGY"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Select Technology ..."
+                    id="storageTechnology"
+                    formControlName="storageTechnology">
+          <mat-option [value]="-1">None</mat-option>
+          <mat-option *ngFor="let option of storageTechnologies"
+                      [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group w-50">
+      <label for="storageCapacity">
+        Storage Capacity
+        <app-info-icon [tooltip]="tooltips.STORAGE_CAPACITY"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input type="number"
+               matInput
+               id="storageCapacity"
+               placeholder="e.g. 100 kW"
+               formControlName="storageCapacity"
+               [required]="form.value.storageTechnology !== -1 && form.value.storageTechnology !== null"
+               [min]="storageCapacityMin"
+               [max]="storageCapacityMax">
+        <mat-error *ngIf="hasError('storageCapacity')">
+          {{getError('storageCapacity')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <div class="form-group w-50 mr-4">
+      <label for="gridConnection">
+        Connection Type
+        <app-info-icon [tooltip]="tooltips.GRID_CONNECTION"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Select Connection Type ..."
+                    required
+                    id="gridConnection"
+                    formControlName="gridConnection">
+          <mat-option *ngFor="let option of gridConnections"
+                      [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('gridConnection')">
+          {{getError('gridConnection')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group w-50">
+      <label for="gridLength">
+        Grid length
+        <app-info-icon [tooltip]="tooltips.GRID_LENGTH"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input type="number"
+               matInput
+               id="gridLength"
+               placeholder="e.g. 7.5 km"
+               formControlName="gridLength"
+               [min]="gridLengthMin"
+               [max]="gridLengthMax">
+        <mat-error *ngIf="hasError('gridLength')">
+          {{getError('gridLength')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <div class="form-group mr-4 w-50">
+      <label for="meteringTypeId">
+        Metering Type
+        <app-info-icon [tooltip]="tooltips.METERING_TYPE"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Select Metering Type ..."
+                    required
+                    id="meteringTypeId"
+                    formControlName="meteringTypeId">
+          <mat-option *ngFor="let option of meterinTypes"
+                      [value]="option.id">
+            {{option.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('meteringTypeId')">
+          {{getError('meteringTypeId')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group w-50">
+      <label for="meterManufacturer">
+        Meter manufacturer
+        <app-info-icon [tooltip]="tooltips.METER_MANUFACTURER"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input matInput
+               id="meterManufacturer"
+               placeholder="N/A if not know"
+               formControlName="meterManufacturer">
+        <mat-error *ngIf="hasError('meterManufacturer')">
+          {{getError('meterManufacturer')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <div class="form-group w-50">
+      <label for="inverterManufacturer">
+        Inverter manufacturer
+        <app-info-icon [tooltip]="tooltips.INVERTER_MANUFACTURER"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline"
+                      class="mr-2">
+        <input matInput
+               id="inverterManufacturer"
+               placeholder="N/A if not know"
+               formControlName="inverterManufacturer">
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+<mat-card-actions class="d-flex justify-content-center mt-5">
+  <button class="green-button"
+          mat-raised-button
+          [disabled]="form?.invalid || loading"
+          (click)="onSave()">
+    Save technical specs
+  </button>
+</mat-card-actions>

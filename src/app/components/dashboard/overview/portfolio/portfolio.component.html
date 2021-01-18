@@ -1,0 +1,90 @@
+<div class="row mt-4 mr-0">
+  <div class="col-md-4">
+    <h6>
+      <img [src]="technicalIconUrl"
+           class="icon d-inline-block mr-2">
+      Technical
+    </h6>
+  </div>
+
+  <div class="col-md-4">
+    <h6>
+      <img [src]="socialIconUrl"
+           class="icon d-inline-block mr-2">
+      Social
+    </h6>
+  </div>
+
+  <div class="col-md-4">
+    <h6>
+      <img [src]="financialIconUrl"
+           class="icon d-inline-block mr-2">
+      Financial
+    </h6>
+  </div>
+</div>
+
+<div class="row mr-0">
+  <app-chart-wrapper class="col-md-4"
+                     [value]="model?.installedRenewableEnergyCapacity?.value"
+                     [unitOfMeasure]="model?.installedRenewableEnergyCapacity?.unitOfMeasure"
+                     [setTrend]="model?.installedRenewableEnergyCapacity?.trendValue"
+                     [config]="model?.installedRenewableEnergyCapacity?.chartConfig"
+                     [key]="model?.installedRenewableEnergyCapacity?.key"
+                     [mode]="chartMode"
+                     [title]="model?.installedRenewableEnergyCapacity?.title">
+  </app-chart-wrapper>
+
+  <app-chart-wrapper class="col-md-4"
+                     [value]="model?.peopleConnected?.value"
+                     [unitOfMeasure]="model?.peopleConnected?.unitOfMeasure"
+                     [setTrend]="model?.peopleConnected?.trendValue"
+                     [config]="model?.peopleConnected?.chartConfig"
+                     [mode]="chartMode"
+                     [key]="model?.peopleConnected?.key"
+                     [title]="model?.peopleConnected?.title">
+  </app-chart-wrapper>
+
+  <app-chart-wrapper class="col-md-4"
+                     [value]="model?.totalInvestment?.value"
+                     [unitOfMeasure]="model?.totalInvestment?.unitOfMeasure"
+                     [setTrend]="model?.totalInvestment?.trendValue"
+                     [config]="model?.totalInvestment?.chartConfig"
+                     [key]="model?.totalInvestment?.key"
+                     [mode]="chartMode"
+                     [title]="model?.totalInvestment?.title">
+  </app-chart-wrapper>
+</div>
+
+<div class="row mt-5 mr-0">
+  <app-chart-wrapper class="col-md-4"
+                     [value]="model?.electricityConsumed?.value"
+                     [unitOfMeasure]="model?.electricityConsumed?.unitOfMeasure"
+                     [setTrend]="model?.electricityConsumed?.trendValue"
+                     [config]="model?.electricityConsumed?.chartConfig"
+                     [key]="model?.electricityConsumed?.key"
+                     [mode]="chartMode"
+                     [title]="model?.electricityConsumed?.title">
+  </app-chart-wrapper>
+
+  <app-chart-wrapper class="col-md-4"
+                     [value]="model?.communitiesConnected?.value"
+                     [unitOfMeasure]="model?.communitiesConnected?.unitOfMeasure"
+                     [setTrend]="model?.communitiesConnected?.trendValue"
+                     [config]="model?.communitiesConnected?.chartConfig"
+                     [key]="model?.communitiesConnected?.key"
+                     [mode]="chartMode"
+                     [title]="model?.communitiesConnected?.title">
+  </app-chart-wrapper>
+
+  <app-chart-wrapper class="col-md-4"
+                     [ngClass]="{'blurred noselect': isGuest }"
+                     [value]="model?.averageTariff?.value"
+                     [unitOfMeasure]="model?.averageTariff?.unitOfMeasure"
+                     [setTrend]="model?.averageTariff?.trendValue"
+                     [config]="model?.averageTariff?.chartConfig"
+                     [key]="model?.averageTariff?.key"
+                     [mode]="chartMode"
+                     [title]="model?.averageTariff?.title">
+  </app-chart-wrapper>
+</div>

@@ -1,0 +1,9 @@
+<label class="h-filter__title">Capacity</label>
+<section class="h-slider px-4">
+  <ng5-slider [value]="from"
+              [highValue]="to"
+              [options]="options"
+              (userChangeEnd)="onChange($event)"
+              (click)="checkIsGuest()">
+  </ng5-slider>
+</section>

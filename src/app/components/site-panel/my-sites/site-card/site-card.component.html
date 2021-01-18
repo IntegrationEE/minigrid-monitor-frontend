@@ -1,0 +1,65 @@
+<div class="site-card"
+     *ngIf="model else plusButton">
+  <div class="topSection">
+    <mat-slide-toggle [(ngModel)]="model.isPublished"
+                      class="switch-icon"
+                      (click)="stopPropagation($event)"
+                      [matTooltip]="model.isPublished ? 'Published' : 'Unpublished'"
+                      (change)="publishedUnpublished($event, model.id)">
+    </mat-slide-toggle>
+    <div [ngClass]="model.statusClass"
+         [matTooltip]="model.statusTooltip">
+    </div>
+  </div>
+
+  <div class="site-card__title">{{ model.name }}</div>
+
+  <div class="site-card__middle-text pt-3 pb-2">
+    <img [src]="icons.location"
+         matTooltip="Location"
+         matTooltipPosition="right"
+         class="icon-medium d-inline-block mr-3 ml-2">
+    {{ model.stateName }}
+  </div>
+
+  <div *ngIf="model.renewableTechnology"
+       class="site-card__middle-text">
+    <img [src]="model.renewableTechnologyIcon"
+         matTooltip="Renewable Technology"
+         matTooltipPosition="right"
+         class="icon-medium d-inline-block mr-3 ml-2">
+    {{ model.renewableCapacity }} kW
+  </div>
+
+  <div class="display-bottom">
+    <div *ngIf="model.gridConnectionIcon"
+         class="grid-icons">
+      <img [src]="model.gridConnectionIcon"
+           [matTooltip]="model.gridConnection === gridConnections.ON_GRID ? 'On-grid' : 'Off-grid'"
+           matTooltipPosition="above"
+           class="icon-height d-inline-block mr-2 ml-1">
+    </div>
+    <div *ngIf="model.conventionalTechnology"
+         class="grid-icons">
+      <img [src]="model.conventionalTechnologyIcon"
+           [matTooltip]="(model.conventionalTechnology === conventionalTechologies.DIESEL ? 'Diesel' : 'Biodiesel') + ' generator on site'"
+           matTooltipPosition="above"
+           class="icon-height d-inline-block mr-2 ml-1">
+    </div>
+  </div>
+
+  <div class="display-bottom display-right">
+    <div *ngIf="isDeveloper"
+         class="pt-1">
+      <img [src]="icons.trash"
+           matTooltip="Delete indicator"
+           (click)="openDialog(model, $event)"
+           matTooltipPosition="above"
+           class="icon-medium d-inline-block mr-2 ml-1">
+    </div>
+  </div>
+</div>
+
+<ng-template #plusButton>
+  <div class="site-card new-card">+</div>
+</ng-template>

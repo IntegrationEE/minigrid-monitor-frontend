@@ -1,0 +1,106 @@
+@import "../../../styles/variables";
+@import "../../../styles/colors";
+@import "../../../styles/mixins-breakpoints.styles";
+
+.chart-wrapper {
+  background-color: $c-white;
+
+  &-menu {
+    position: absolute;
+    cursor: pointer;
+    right: 0;
+    bottom: $spacing-30;
+  }
+}
+
+.mat-card {
+  &-shadow {
+    box-shadow: 0 $spacing-10 $spacing-20 rgba(185, 185, 185, 0.25);
+  }
+}
+
+.chart-placeholder {
+  min-height: 150px;
+}
+
+.analytics {
+  &-title {
+    font-size: $spacing-16;
+    font-family: "Source Sans Pro";
+    font-weight: bold;
+    color: $c-brand-grey;
+    margin-left: $spacing-40;
+  }
+
+  &-info {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &-chart {
+    height: $spacing-350 !important;
+
+    @include max-xxl-1540 {
+      height: $spacing-250 !important;
+    }
+  }
+}
+
+.chart-wrapper {
+  &-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .trend-value {
+      font-size: $spacing-12;
+      font-family: "Source Sans Pro";
+      font-weight: bold;
+    }
+  }
+
+  &-title {
+    font-size: $spacing-30;
+    font-family: "Source Sans Pro";
+    font-weight: bold;
+    color: $c-brand-grey;
+  }
+
+  &-subtitle {
+    font-size: $spacing-16;
+    font-family: "Poppins";
+    color: $c-grey-dark;
+    height: $spacing-50;
+  }
+
+  &-unit-of-measure {
+    font-size: $spacing-18;
+    font-family: "Source Sans Pro";
+    color: $c-brand-grey;
+  }
+
+  &-key {
+    font-size: $spacing-40;
+    font-family: "Source Sans Pro";
+    color: $c-grey-dark;
+  }
+}
+
+.arrow {
+  &-up {
+    color: $c-arrow-green;
+  }
+
+  &-right {
+    color: $c-arrow-yellow;
+  }
+
+  &-down {
+    color: $c-arrow-red;
+  }
+}
+
+.w-60 {
+  width: 60%;
+}

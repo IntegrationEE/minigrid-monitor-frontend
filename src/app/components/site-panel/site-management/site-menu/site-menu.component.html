@@ -1,0 +1,45 @@
+<div>
+  <div class="d-flex option mb-2"
+       *ngFor="let option of options"
+       (click)="onSelectPage(option.page)">
+    <div class="circle mr-2 mt-2"
+         [ngClass]="'circle-' + option.status">
+    </div>
+
+    <div [ngClass]="{'option-active': option.page === current}">
+      {{option.label}}
+    </div>
+  </div>
+</div>
+
+<div class="how-to-section"
+     *ngIf="mode === siteMenuModes.PERFORMANCE && current !== siteMenuPages.SOCIAL">
+  <span class="how-to-section__title">How To Upload data via Excel:</span>
+  <ol class="how-to-section__content">
+    <li>Download the current tables via the Button "Download table data file" and save it locally.</li>
+    <li>Open the File with Excel.</li>
+    <li>Editing:
+      <ol class="how-to-section__nested-list">
+        <li>You can add new data by using the current Year/Month format</li>
+        <li>You cannot delete rows but make them invalid when you type 0</li>
+        <li>Year/Month duplicates are not allowed</li>
+        <li>blank rows are not allowed</li>
+      </ol>
+    </li>
+    <li>Upload Data via the Button "Upload table data file" and select "Your edited file".</li>
+  </ol>
+</div>
+
+<div class="qr-section"
+     *ngIf="mode === siteMenuModes.DETAILS && current === siteMenuPages.INFO && qrCode && !loading">
+  <span class="qr-section__title">Unique Site Identifier:</span>
+  <img [src]="qrCode"
+       class="img-fluid pt-2">
+  <div class="justify-content-center mt-4">
+    <button class="green-button"
+            mat-raised-button
+            (click)="updateQrCode()">
+      Update QR code
+    </button>
+  </div>
+</div>

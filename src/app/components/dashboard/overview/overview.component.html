@@ -1,0 +1,59 @@
+<div class="overview py-5">
+  <h4 class="pl-100 section-title">Overview</h4>
+
+  <div class="d-flex justify-content-center">
+    <button mat-raised-button
+            class="custom-button mat-elevation-z0"
+            [matTooltip]="mode === modes.SITE ? 'Back to Portfolio view for latest filter selection' : ''"
+            matTooltipPosition="above"
+            [ngClass]="{'custom-button-selected': mode === modes.PORTFOLIO }"
+            (click)="changeView(modes.PORTFOLIO)">
+      <img [src]="portfolioIconUrl"
+           class="icon d-inline-block mr-2">
+      Portfolio
+    </button>
+
+    <span [matTooltip]="!siteId ? 'Please select a site from the map or list above' : ''"
+          matTooltipPosition="above">
+      <button mat-raised-button
+              class="custom-button mat-elevation-z0"
+              [disabled]="!siteId"
+              [ngClass]="{'custom-button-selected': mode === modes.SITE }"
+              (click)="changeView(modes.SITE)">
+        <img [src]="siteIconUrl"
+             class="icon d-inline-block mr-2">
+        Site
+      </button>
+    </span>
+
+    <span [matTooltip]="!programmeId ? 'Please select a one programme from the filter above' : ''"
+          matTooltipPosition="above">
+      <button mat-raised-button
+              class="custom-button mat-elevation-z0"
+              [disabled]="!programmeId"
+              [ngClass]="{'custom-button-selected': mode === modes.PROGRAMME }"
+              (click)="changeView(modes.PROGRAMME)">
+        <img [src]="programmeIconUrl"
+             class="icon d-inline-block mr-2">
+        Programme
+      </button>
+    </span>
+  </div>
+
+  <div class="pl-100"
+       *ngIf="filters">
+    <ng-container [ngSwitch]="mode">
+      <app-portfolio *ngSwitchCase="modes.PORTFOLIO"
+                     [setFilters]="filters">
+      </app-portfolio>
+
+      <app-programme *ngSwitchCase="modes.PROGRAMME"
+                     [setProgrammeId]="programmeId">
+      </app-programme>
+
+      <app-graph *ngSwitchCase="modes.SITE"
+                 [setSiteId]="siteId">
+      </app-graph>
+    </ng-container>
+  </div>
+</div>

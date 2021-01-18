@@ -1,0 +1,99 @@
+<div class="modal-container"
+     [ngSwitch]="data.action">
+  <h1 mat-dialog-title>{{capitalize(data.action)}} Company</h1>
+  <div mat-dialog-content
+       *ngSwitchCase="actionType.DELETE">
+    <p>Are you certain to remove this Company?</p>
+  </div>
+
+  <ng-container *ngSwitchDefault>
+    <form [formGroup]="form"
+          *ngIf="data">
+      <div mat-dialog-content>
+        <mat-form-field>
+          <input matInput
+                 placeholder="Name"
+                 formControlName="name"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 placeholder="City"
+                 formControlName="city"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 placeholder="Street"
+                 formControlName="street"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 placeholder="Number"
+                 formControlName="number"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select [placeholder]="administrativeUnitLabel"
+                      required
+                      formControlName="stateId">
+            <mat-option>
+              <ngx-mat-select-search [formControl]="statesFilterControl"
+                                     placeholderLabel="Search"
+                                     noEntriesFoundLabel="No State found">
+              </ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let option of filteredStates"
+                        [value]="option.id">
+              {{option.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select [placeholder]="lgaLabel"
+                      required
+                      formControlName="localGovernmentAreaId">
+            <mat-option *ngFor="let option of lgas"
+                        [value]="option.id">
+              {{option.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="url"
+                 matInput
+                 placeholder="Website"
+                 formControlName="websiteUrl">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 placeholder="Phone Number"
+                 formControlName="phoneNumber"
+                 required>
+        </mat-form-field>
+      </div>
+    </form>
+  </ng-container>
+
+  <div class="dialog-buttons-container"
+       mat-dialog-actions>
+    <button mat-flat-button
+            mat-dialog-close>
+      Cancel
+    </button>
+    <button mat-stroked-button
+            color="primary"
+            [disabled]="loading"
+            (click)="onConfirm()">
+      Confirm
+    </button>
+  </div>
+</div>

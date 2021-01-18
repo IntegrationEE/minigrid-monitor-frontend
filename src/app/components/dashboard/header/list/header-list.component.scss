@@ -1,0 +1,28 @@
+@import "../../../../shared/styles/variables";
+@import "../../../../shared/styles/colors";
+
+.h-list {
+  padding: $spacing-20;
+
+  &__title {
+    color: $c-white;
+    font-size: $spacing-22;
+    font-family: "Source Sans Pro";
+    font-weight: bold;
+  }
+
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+  .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: $c-brand-green;
+  }
+}
+
+.leaflet-popup {
+  opacity: 1;
+  bottom: -7px;
+  left: -52px;
+
+  &-content {
+    width: 64px;
+  }
+}

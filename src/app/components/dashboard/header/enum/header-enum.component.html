@@ -1,0 +1,26 @@
+<div class="w-100 mt-2">
+  <label class="h-filter__title"
+         for="filterControl-{{title}}">
+    {{title}}
+  </label>
+</div>
+
+<div class="px-3 py-2 h-filter__enum">
+  <mat-checkbox class="d-block"
+                [checked]="selectedAll"
+                (change)="selectAll()"
+                (click)="checkIsGuest($event)">
+    All
+  </mat-checkbox>
+
+  <mat-checkbox *ngFor="let option of data"
+                [checked]="isActive(option.value)"
+                [disabled]="option.disabled"
+                class="d-block"
+                (change)="toggle(option)"
+                (click)="checkIsGuest($event)"
+                [ngClass]="{ 'grey-checkbox': selectedAll }"
+                [matTooltip]="option.label">
+    {{option.label}}
+  </mat-checkbox>
+</div>

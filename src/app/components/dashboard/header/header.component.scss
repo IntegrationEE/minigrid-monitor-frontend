@@ -1,0 +1,88 @@
+@import "../../../shared/styles/colors";
+@import "../../../shared/styles/variables";
+
+.header {
+  background-color: $c-grey-light;
+}
+
+.h-filter {
+  &__title {
+    color: $c-black;
+    font-family: "Poppins";
+    font-weight: bold;
+    font-size: $spacing-16;
+  }
+
+  &__search {
+    background-color: $c-white;
+    border-radius: 5px;
+    font-size: $spacing-14;
+    height: $spacing-50;
+  }
+
+  &__radio {
+    background-color: $c-white;
+    border-radius: 7px;
+
+    ::ng-deep {
+      font-size: $spacing-14;
+    }
+  }
+
+  &__enum {
+    max-height: $spacing-115;
+    background-color: $c-white;
+    border-radius: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+  }
+
+  &__checklist {
+    height: 255px;
+    overflow: auto;
+    border-radius: 5px;
+    background-color: $c-white;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.h-template {
+  background-color: $c-grey-dark;
+  position: relative;
+
+  &__buttons {
+    position: absolute;
+    bottom: 0;
+    right: $spacing-10;
+    z-index: 9999;
+  }
+
+  &__btn {
+    border: 1px solid $c-grey !important;
+    padding-top: $spacing-2;
+    padding-bottom: $spacing-2;
+    min-width: 120px;
+
+    &:nth-child(1) {
+      border-top-left-radius: 5px;
+    }
+
+    &:nth-child(2n) {
+      border-top-right-radius: 5px;
+    }
+
+    &.active {
+      color: $c-brand-green;
+      border: 1px solid $c-brand-green !important;
+    }
+  }
+}
+
+.closeIcon {
+  cursor: pointer;
+  position: relative;
+  top: $spacing-5;
+}

@@ -1,0 +1,21 @@
+export enum SocialChartType {
+  PEOPLE_CONNECTED = 1,
+  EMPLOYMENTS,
+  NEW_SERVICES,
+  CUSTOMER_SATISFACTION,
+}
+
+export enum TechnicalChartType {
+  INSTALLED_CAPACITY = 1,
+  AVERAGE_CONSUMPTIONS,
+  CAPACITY_UTILIZATION,
+  ELECTRICITY_CONSUMPTION,
+  DAILY_PROFILE,
+}
+
+export enum FinancialChartType {
+  REVENUE = 1,
+  CAPEX,
+  OPEX,
+  FINANCING_STRUCTURE,
+}

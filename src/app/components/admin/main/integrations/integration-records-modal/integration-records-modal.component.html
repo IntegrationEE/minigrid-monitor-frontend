@@ -1,0 +1,106 @@
+<div class="modal-window">
+  <div class="container-fluid">
+    <h3 class="section-title">Integration Records</h3>
+
+    <div class="custom-table">
+      <div class="custom-table-header d-flex justify-content-between">
+        <app-input-filter class="w-75"
+                          (onValueChange)="applyFilter($event)"
+                          placeholder="Search">
+        </app-input-filter>
+      </div>
+
+      <div class="mat-elevation-z8">
+        <mat-table [dataSource]="dataSource"
+                   matSort>
+
+          <ng-container [matColumnDef]="columns.STATUS">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header
+                             class="cell-title">
+              Status
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{element.status}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container [matColumnDef]="columns.INSERTED">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header
+                             class="cell-title">
+              Inserted
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{element.inserted}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container [matColumnDef]="columns.STEP">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header
+                             class="cell-title">
+              Step
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{element.stepName}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container [matColumnDef]="columns.ERROR">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header
+                             class="cell-title">
+              Error
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="ellipsis-cell"
+                    [matTooltip]="element.error">
+                {{element.error}}
+              </span>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container [matColumnDef]="columns.CREATED">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header
+                             class="cell-title">
+              Created
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{element.created | date: 'dd/MM/yyyy hh:mm' }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container [matColumnDef]="columns.END_DATE">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header
+                             class="cell-title">
+              End date
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{element.endDate | date: 'dd/MM/yyyy hh:mm' }}
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+
+        <mat-paginator #paginator
+                       [pageSize]="5"
+                       [pageSizeOptions]="[5, 10, 20]"
+                       [showFirstLastButtons]="true">
+        </mat-paginator>
+      </div>
+    </div>
+    <div class="dialog-buttons-container justify-content-center pt-4 pb-4 "
+         mat-dialog-actions>
+      <button mat-flat-button
+              class="green-button"
+              mat-dialog-close>
+        Close
+      </button>
+    </div>
+  </div>
+</div>

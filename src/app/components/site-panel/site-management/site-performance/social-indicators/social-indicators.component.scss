@@ -1,0 +1,56 @@
+@import "../../../../../shared/styles/colors";
+@import "../../../../../shared/styles/shared.scss";
+
+.title {
+  font-weight: bold;
+  padding-bottom: $spacing-20;
+  padding-top: $spacing-40;
+}
+
+.borderBottom {
+  border-bottom: 3px solid $c-grey-semi;
+}
+
+.show-all-button {
+  color: $c-brand-green;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: $spacing-16;
+  font-weight: $font-weight-500;
+  outline: none;
+  padding-top: $spacing-20;
+  padding-bottom: $spacing-50;
+  border: 0px;
+  box-sizing: none;
+  background-color: transparent;
+  text-align: left;
+}
+
+.greenRow {
+  font-weight: bold;
+  color: $c-brand-green;
+}
+
+.grayRow {
+  color: $c-grey-semi !important;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fieldElements {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 50%;
+}
+
+.fieldPaddingLeft {
+  padding-left: $spacing-12;
+}
+
+.fieldPaddingRight {
+  padding-right: $spacing-12;
+}

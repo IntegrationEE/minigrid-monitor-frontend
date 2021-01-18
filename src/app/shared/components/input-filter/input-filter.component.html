@@ -1,0 +1,19 @@
+<mat-form-field class="w-25">
+  <input matInput
+         [formControl]="filterControl"
+         [placeholder]="placeholder">
+
+  <img [src]="magnifierIconUrl"
+       class="icon-small mr-2"
+       matPrefix>
+
+  <button mat-button
+          [hidden]="hideClear"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          class="clear-button"
+          (click)="clearFilter()">
+    X
+  </button>
+</mat-form-field>

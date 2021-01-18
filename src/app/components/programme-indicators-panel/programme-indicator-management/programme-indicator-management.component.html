@@ -1,0 +1,28 @@
+<mat-card class="pl-50 py-50">
+
+  <div *ngIf="loading; else tabs"
+       class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <ng-template #tabs>
+    <mat-tab-group mat-align-tabs="center"
+                   class="custom-tabs">
+      <mat-tab label="Indicator Metadata">
+        <ng-template matTabContent>
+          <app-programme-indicator-metadata></app-programme-indicator-metadata>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab *ngIf="indicatorId"
+               label="Performance data">
+        <ng-template matTabContent>
+          <div class="mt-4 pl-150 pr-150">
+            <app-year-month-indicators [setIndicatorsOptionValue]="indicatorsOptionValue">
+            </app-year-month-indicators>
+          </div>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </ng-template>
+</mat-card>

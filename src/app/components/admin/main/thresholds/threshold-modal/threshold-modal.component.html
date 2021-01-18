@@ -1,0 +1,50 @@
+<div class="modal-container"
+     [ngSwitch]="data.action">
+  <h1 mat-dialog-title>{{capitalize(data.action)}} Thresholds</h1>
+
+  <ng-container *ngSwitchDefault>
+    <form [formGroup]="form"
+          *ngIf="data">
+      <div mat-dialog-content>
+
+        <mat-form-field>
+          <input type="text"
+                 matInput
+                 placeholder="Name"
+                 formControlName="name"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="number"
+                 matInput
+                 placeholder="Min"
+                 formControlName="min"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="number"
+                 matInput
+                 placeholder="Max"
+                 formControlName="max"
+                 required>
+        </mat-form-field>
+      </div>
+    </form>
+  </ng-container>
+
+  <div class="dialog-buttons-container"
+       mat-dialog-actions>
+    <button mat-flat-button
+            mat-dialog-close>
+      Cancel
+    </button>
+    <button mat-stroked-button
+            color="primary"
+            [disabled]="loading || form.invalid"
+            (click)="onConfirm()">
+      Confirm
+    </button>
+  </div>
+</div>

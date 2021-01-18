@@ -1,0 +1,91 @@
+@import "../../../../shared/styles/variables";
+@import "../../../../shared/styles/colors";
+@import "../../../../shared/styles/shared.scss";
+
+.site-card {
+  @extend .card-frame;
+  position: relative;
+
+  &__title {
+    font-weight: $font-weight-900;
+    padding-top: $spacing-15;
+    color: $c-brand-grey;
+  }
+
+  &__middle-text {
+    font-size: $spacing-14;
+    color: $c-grey-dark;
+  }
+}
+
+.display-bottom {
+  position: absolute;
+  bottom: $spacing-16;
+}
+
+.display-right {
+  right: $spacing-10;
+}
+
+.circle {
+  width: $spacing-10;
+  height: $spacing-10;
+  border-radius: 50%;
+}
+
+.statusOrange {
+  background-color: $c-status-orange;
+}
+
+.statusRed {
+  background-color: $c-status-red;
+}
+
+.statusGreen {
+  background-color: $c-status-green;
+}
+
+::ng-deep mat-tooltip-component {
+  & .mat-tooltip {
+    font-size: $spacing-14;
+    background-color: $c-brand-grey;
+  }
+}
+
+.grid-icons {
+  padding-top: $spacing-4;
+  padding-right: $spacing-2;
+  float: left;
+}
+
+.icon-height {
+  height: 100%;
+  max-height: $spacing-27;
+}
+
+.switch-icon {
+  padding-right: $spacing-30;
+  margin-top: -$spacing-7;
+
+  ::ng-deep .mat-slide-toggle-bar {
+    height: $spacing-10;
+    width: $spacing-25;
+  }
+
+  ::ng-deep .mat-slide-toggle-thumb {
+    height: $spacing-16;
+    width: $spacing-16;
+  }
+}
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: $c-white;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: $c-brand-green;
+}
+
+.topSection {
+  float: right;
+  display: flex;
+}

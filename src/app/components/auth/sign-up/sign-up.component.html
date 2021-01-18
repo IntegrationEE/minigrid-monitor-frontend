@@ -1,0 +1,18 @@
+<app-logo className="mb-4"></app-logo>
+
+<mat-card class="auth-card-body">
+  <mat-tab-group mat-align-tabs="center"
+                 class="custom-tabs">
+    <mat-tab label="Sign In">
+      <ng-template matTabContent>
+        <app-login></app-login>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab label="Sign Up">
+      <ng-template matTabContent>
+        <app-register></app-register>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

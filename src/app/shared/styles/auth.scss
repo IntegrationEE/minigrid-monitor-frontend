@@ -1,0 +1,55 @@
+@import "../../shared/styles/variables";
+@import "../../shared/styles/colors";
+@import "../../shared/styles/shared.scss";
+
+.auth {
+  // background
+  &-background {
+    background-color: $c-grey-light;
+    min-height: calc(100vh - 64px); // view - toolbar height
+    justify-content: center;
+    padding-top: $spacing-60;
+  }
+
+  // cards
+  &-card {
+    &-wrapper {
+      min-width: 800px;
+      padding-left: $spacing-100;
+      padding-right: $spacing-100;
+      padding-top: $spacing-80;
+      padding-bottom: $spacing-80;
+      height: fit-content;
+    }
+
+    &-body {
+      min-width: 800px;
+    }
+
+    &-title {
+      font-weight: bold;
+      color: $c-brand-green;
+      font-family: "Source Sans Pro";
+    }
+
+    &-subtitle,
+    &-content {
+      color: $c-black;
+      font-size: $spacing-16;
+      font-family: "Source Sans Pro";
+    }
+  }
+}
+
+.flex-spinner {
+  align-self: center;
+  left: auto;
+  transform: none;
+}
+
+.phone-number {
+  font-weight: 700;
+  &-prefix {
+    width: 60px;
+  }
+}

@@ -1,0 +1,28 @@
+<div class="row mt-4 mr-0 justify-content-between">
+  <app-chart-wrapper class="col-md-6"
+                     [config]="peopleConnectedConfig"
+                     [mode]="chartMode"
+                     (onExportData)="exportData(chartTypes.PEOPLE_CONNECTED, $event)">
+  </app-chart-wrapper>
+
+  <app-chart-wrapper class="col-md-6"
+                     [config]="servicesConfig"
+                     [mode]="chartMode"
+                     (onExportData)="exportData(chartTypes.NEW_SERVICES, $event)">
+  </app-chart-wrapper>
+</div>
+
+<div class="row mt-5 mr-0 justify-content-between">
+  <app-chart-wrapper class="col-md-6"
+                     [config]="employementConfig"
+                     [mode]="chartMode"
+                     (onExportData)="exportData(chartTypes.EMPLOYMENTS, $event)">
+  </app-chart-wrapper>
+
+  <app-chart-wrapper class="col-md-6"
+                     [config]="customerConfig"
+                     [mode]="chartMode"
+                     [setCenterText]="satisfactionInfo"
+                     (onExportData)="exportData(chartTypes.CUSTOMER_SATISFACTION, $event)">
+  </app-chart-wrapper>
+</div>

@@ -1,0 +1,20 @@
+<section class="site">
+
+  <aside #details
+         class="site__details details">
+    <label class="details__title">Site Details</label>
+    <div class="details__content">
+      <label class="details__label ellipsis-text"
+             *ngFor="let item of array">
+        {{item.title}}:
+        <span class="details__span"
+              [matTooltip]="item.value">{{ item.value }}
+        </span>
+      </label>
+    </div>
+  </aside>
+
+  <canvas #canvas
+          class="site__canvas">
+  </canvas>
+</section>

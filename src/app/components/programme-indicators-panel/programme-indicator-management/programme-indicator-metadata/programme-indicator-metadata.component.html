@@ -1,0 +1,98 @@
+<div class="row mt-4 mx-0">
+  <div class="col-md-12 justify-content-center pl-150 pr-150">
+    <form *ngIf="form"
+          [formGroup]="form">
+
+      <div class="d-flex justify-content-center">
+        <div class="form-group mr-4 w-50">
+          <label for="name">
+            Indicator Title
+            <app-info-icon [tooltip]="tooltips.INDICATOR_NAME"></app-info-icon>
+          </label>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   id="name"
+                   formControlName="name"
+                   required
+                   placeholder="Title">
+          </mat-form-field>
+          <mat-error *ngIf="hasError('name')">
+            {{getError('name')}}
+          </mat-error>
+        </div>
+
+        <div class="form-group w-50">
+          <label for="unit">
+            Unit
+            <app-info-icon [tooltip]="tooltips.UNIT"></app-info-icon>
+          </label>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   id="unit"
+                   formControlName="unit">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <div class="form-group mr-4 w-50">
+          <label for="description">
+            Description
+            <app-info-icon [tooltip]="tooltips.DESCRIPTION"></app-info-icon>
+          </label>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   id="description"
+                   formControlName="description">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group w-50">
+          <label for="target">
+            Target Value
+            <app-info-icon [tooltip]="tooltips.TARGET_VALUE"></app-info-icon>
+          </label>
+          <mat-form-field appearance="outline">
+            <input type="number"
+                   matInput
+                   id="target"
+                   formControlName="target"
+                   required
+                   min="0">
+          </mat-form-field>
+          <mat-error *ngIf="hasError('target')">
+            {{getError('target')}}
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="d-flex">
+        <div class="form-group mr-4 w-50">
+          <label for="isCumulative">
+            Cumulative chart
+            <app-info-icon [tooltip]="tooltips.CUMULATIVE_CHART"
+                           class="mr-2">
+            </app-info-icon>
+          </label>
+          <mat-form-field appearance="outline"
+                          class="mr-2">
+            <mat-select id="isCumulative"
+                        formControlName="isCumulative">
+              <mat-option [value]="true">Yes</mat-option>
+              <mat-option [value]="false">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+
+    <mat-card-actions class="d-flex justify-content-center mt-4">
+      <button class="green-button"
+              mat-raised-button
+              [disabled]="form?.invalid || loading"
+              (click)="onSave()">
+        Save Indicator metadata
+      </button>
+    </mat-card-actions>
+  </div>
+</div>

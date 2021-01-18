@@ -1,0 +1,53 @@
+<mat-card class="auth-card mt-4">
+  <form [formGroup]="form">
+    <mat-card-content class="auth-card-content d-flex flex-column align-items-center">
+      <mat-form-field appearance="outline"
+                      class="w-50">
+        <input matInput
+               placeholder="Username"
+               formControlName="username"
+               autocomplete="off"
+               required>
+        <mat-error>
+          <strong>Username</strong> is a required field!
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline"
+                      class="w-50">
+        <input matInput
+               placeholder="Email"
+               autocomplete="off"
+               type="email"
+               formControlName="email"
+               required>
+        <mat-error>
+          <strong>Email</strong> is required and must be valid!
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline"
+                      class="w-50">
+        <input matInput
+               placeholder="Password"
+               autocomplete="off"
+               type="password"
+               formControlName="password"
+               minlength="8"
+               required>
+        <mat-error>
+          <strong>Password</strong> is a required field!
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+  </form>
+
+  <mat-card-actions class="d-flex justify-content-center">
+    <button class="green-button"
+            mat-raised-button
+            [disabled]="form.invalid"
+            (click)="requestAccount()">
+      Create account
+    </button>
+  </mat-card-actions>
+</mat-card>

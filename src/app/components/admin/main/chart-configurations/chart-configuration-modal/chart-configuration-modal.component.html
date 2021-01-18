@@ -1,0 +1,76 @@
+<div class="modal-container"
+     [ngSwitch]="data.action">
+  <h1 mat-dialog-title>Edit Chart Configuration</h1>
+
+  <ng-container *ngSwitchDefault>
+    <form [formGroup]="form"
+          *ngIf="data">
+      <div mat-dialog-content>
+
+        <mat-form-field>
+          <input matInput
+                 placeholder="Type"
+                 formControlName="typeName"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 placeholder="Name"
+                 formControlName="name"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 placeholder="Title"
+                 formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 placeholder="Tooltip"
+                 formControlName="tooltip">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 placeholder="Unit of measure"
+                 formControlName="unitOfMeasure">
+        </mat-form-field>
+
+        <mat-form-field *ngIf="checkIfConvertable(form.value.code)">
+          <mat-select placeholder="Convertable"
+                      formControlName="convertable">
+            <mat-option [value]="null">None</mat-option>
+            <mat-option *ngFor="let option of convertableTypes"
+                        [value]="option.value">
+              {{option.label}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-checkbox class="d-block"
+                      id="isCumulative"
+                      name="isCumulative"
+                      formControlName="isCumulative">
+          Is cumulative
+        </mat-checkbox>
+      </div>
+    </form>
+  </ng-container>
+
+  <div class="dialog-buttons-container"
+       mat-dialog-actions>
+    <button mat-flat-button
+            mat-dialog-close>
+      Cancel
+    </button>
+    <button mat-stroked-button
+            color="primary"
+            [disabled]="loading || form.invalid"
+            (click)="onConfirm()">
+      Confirm
+    </button>
+  </div>
+</div>

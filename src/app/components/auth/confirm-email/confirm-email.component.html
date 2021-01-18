@@ -1,0 +1,37 @@
+<mat-spinner *ngIf="loading; else showStatus"
+             class="my-3 flex-spinner"
+             diameter="24">
+</mat-spinner>
+
+<ng-template #showStatus>
+  <mat-card class="auth-card-wrapper d-flex flex-column text-center align-items-center">
+    <ng-container *ngIf="isConfirmed; else errorTemplate">
+
+      <mat-card-title class="auth-card-title w-50">
+        Success!
+      </mat-card-title>
+
+      <mat-card-subtitle class="auth-card-subtitle w-50 my-5">
+        Your account has been confirmed!
+      </mat-card-subtitle>
+
+      <mat-card-actions>
+        <button routerLink="/{{routes.AUTH}}/{{routes.SIGN_UP}}"
+                class="green-button"
+                mat-raised-button>
+          SIGN IN
+        </button>
+      </mat-card-actions>
+    </ng-container>
+
+    <ng-template #errorTemplate>
+      <mat-card-title class="auth-card-title w-50">
+        Ooops 404 :(
+      </mat-card-title>
+
+      <mat-card-subtitle class="auth-card-subtitle w-50 mt-5">
+        We can't seem to confirm your e-mail address
+      </mat-card-subtitle>
+    </ng-template>
+  </mat-card>
+</ng-template>

@@ -1,0 +1,56 @@
+@import "../../../../shared/styles/colors";
+@import "../../../../shared/styles/variables";
+@import "../../../../shared/styles/mixins-breakpoints.styles";
+
+.site {
+  position: relative;
+
+  &__details {
+    top: 10px;
+    position: absolute;
+    max-width: 300px;
+    max-height: 100px;
+
+    @include max-lg-1199 {
+      max-width: 190px;
+    }
+
+    @include max-xxxl-1600 {
+      max-width: 240px;
+    }
+
+    z-index: 100;
+  }
+
+  &__canvas {
+    position: relative;
+  }
+}
+
+.details {
+  &__title {
+    font-weight: $font-weight-900;
+  }
+
+  &__content {
+    background-color: $c-white;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  &__label {
+    font-size: $spacing-16;
+    font-weight: $font-weight-900;
+    display: block;
+    margin: 0;
+  }
+
+  &__span {
+    font-size: $spacing-16;
+    font-weight: normal;
+  }
+}
+
+::ng-deep .mat-tooltip {
+  z-index: 200;
+}

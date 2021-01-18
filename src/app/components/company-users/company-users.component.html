@@ -1,0 +1,109 @@
+<div class="container-fluid pl-100">
+  <h1 class="section-title">Company Users</h1>
+
+  <div class="custom-table">
+    <div class="custom-table-header d-flex justify-content-between">
+      <app-input-filter class="w-75"
+                        (onValueChange)="applyFilter($event)"
+                        placeholder="Search">
+      </app-input-filter>
+    </div>
+
+    <div class="mat-elevation-z8">
+      <mat-table [dataSource]="dataSource"
+                 matSort>
+
+        <ng-container [matColumnDef]="columns.FULL_NAME">
+          <mat-header-cell *matHeaderCellDef
+                           mat-sort-header
+                           class="cell-title">
+            Full Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.fullName}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columns.EMAIL">
+          <mat-header-cell *matHeaderCellDef
+                           mat-sort-header
+                           class="cell-title">
+            E-mail
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.email}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columns.LOGIN">
+          <mat-header-cell *matHeaderCellDef
+                           mat-sort-header
+                           class="cell-title">
+            Login
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.login}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columns.HEAD_OF_COMPANY">
+          <mat-header-cell *matHeaderCellDef
+                           mat-sort-header
+                           class="cell-title">
+            Head Of Company
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.isHeadOfCompany | yesNo }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columns.ACTIONS">
+          <mat-header-cell *matHeaderCellDef
+                           class="medium-extended-cell cell-title">
+            Actions
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"
+                    class="medium-extended-cell">
+            <ng-container *ngIf="element.role === rolesCodes.GUEST; else developerTemplate">
+              <button (click)="approve(element)"
+                      mat-raised-button
+                      class="green-button">
+                Approve
+              </button>
+
+              <button (click)="delete(element, 'reject')"
+                      mat-raised-button
+                      color="warn">
+                Reject
+              </button>
+            </ng-container>
+
+            <ng-template #developerTemplate>
+              <button [disabled]="currentUserId === element.id && element.isHeadOfCompany && countHeadOfCompany === 1"
+                      mat-raised-button
+                      (click)="toggleHeadOfCompany(element)"
+                      class="green-button">
+                Toggle Head of Company
+              </button>
+
+              <button (click)="delete(element, 'delete')"
+                      mat-raised-button
+                      color="warn">
+                Delete
+              </button>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator
+                     [pageSize]="10"
+                     [pageSizeOptions]="[15, 50, 100]"
+                     [showFirstLastButtons]="true">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

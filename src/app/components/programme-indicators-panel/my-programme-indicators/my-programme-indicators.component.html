@@ -1,0 +1,41 @@
+<app-programme-indicator-management *ngIf="current; else indicatorList"
+                                    [setIndicator]="current">
+</app-programme-indicator-management>
+
+<ng-template #indicatorList>
+  <div class="container-fluid">
+    <div class="title">My programmes indicators</div>
+
+    <mat-tab-group mat-align-tabs="center"
+                   class="custom-tabs pt-3"
+                   (selectedTabChange)="setProgrammeId($event)"
+                   [(selectedIndex)]="selectedIndex">
+      <mat-tab *ngFor="let tab of programmes; let index = index"
+               [label]="tab.name">
+        <ng-template matTabContent>
+          <div class="row mt-5 mr-0">
+            <div *ngFor="let indicator of data; let i = index">
+              <div class="card-box"
+                   *ngIf="i < maxItemsOnLoad || showAll">
+                <app-programme-indicator-card [model]="indicator"
+                                              (click)="goToIndicatorMetadata(indicator)">
+                </app-programme-indicator-card>
+              </div>
+            </div>
+
+            <div class="card-box">
+              <app-programme-indicator-card (click)="createNewIndicator()"></app-programme-indicator-card>
+            </div>
+          </div>
+
+          <div *ngIf="data.length > maxItemsOnLoad">
+            <button class="show-all-button"
+                    (click)="showAllIndicators()">
+              {{ showAll ? 'Show less' : 'Show all indicators ' + '(' + data.length + ')' }}
+            </button>
+          </div>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</ng-template>

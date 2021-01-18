@@ -1,0 +1,217 @@
+<form *ngIf="form"
+      [formGroup]="form">
+  <div class="d-flex">
+    <div class="form-group">
+      <label>
+        CAPEX (in {{ currency }})
+      </label>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class="form-group mr-4 w-50">
+      <label for="generation">
+        Generation assets
+        <app-info-icon [tooltip]="tooltips.GENERATION_ASSETS"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input type="number"
+               matInput
+               id="generation"
+               formControlName="generation"
+               required
+               min="0">
+        <mat-error *ngIf="hasError('generation')">
+          {{getError('generation')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group w-50">
+      <label for="distribution">
+        Distribution assets
+        <app-info-icon [tooltip]="tooltips.DISTRIBUTION_ASSETS"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input type="number"
+               matInput
+               id="distribution"
+               formControlName="distribution"
+               required
+               min="0">
+        <mat-error *ngIf="hasError('distribution')">
+          {{getError('distribution')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class="form-group mr-4 w-50">
+      <label for="customerInstallation">
+        Customer installations
+        <app-info-icon [tooltip]="tooltips.CUSTOMER_INSTALLATION"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input type="number"
+               matInput
+               id="customerInstallation"
+               formControlName="customerInstallation"
+               required
+               min="0">
+        <mat-error *ngIf="hasError('customerInstallation')">
+          {{getError('customerInstallation')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group w-50">
+      <label for="logistics">
+        Logistics
+        <app-info-icon [tooltip]="tooltips.LOGISTICS"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input type="number"
+               matInput
+               id="logistics"
+               formControlName="logistics"
+               required
+               min="0">
+        <mat-error *ngIf="hasError('logistics')">
+          {{getError('logistics')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class="form-group mr-4 w-50">
+      <label for="siteDevelopment">
+        Project development
+        <app-info-icon [tooltip]="tooltips.PROJECT_DEVELOPMENT"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input type="number"
+               matInput
+               id="siteDevelopment"
+               formControlName="siteDevelopment"
+               required
+               min="0">
+        <mat-error *ngIf="hasError('siteDevelopment')">
+          {{getError('siteDevelopment')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group w-50">
+      <label for="commissioning">
+        Commissioning
+        <app-info-icon [tooltip]="tooltips.COMMISSIONING"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input type="number"
+               matInput
+               id="commissioning"
+               formControlName="commissioning"
+               required
+               min="0">
+        <mat-error *ngIf="hasError('commissioning')">
+          {{getError('commissioning')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-group w-50">
+    <label for="taxes">
+      Taxes
+      <app-info-icon [tooltip]="tooltips.TAXES"></app-info-icon>
+    </label>
+    <mat-form-field appearance="outline"
+                    class="mr-2">
+      <input type="number"
+             matInput
+             id="taxes"
+             formControlName="taxes"
+             required
+             min="0">
+      <mat-error *ngIf="hasError('taxes')">
+        {{getError('taxes')}}
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="d-flex">
+    <div class="form-group">
+      <label>
+        Financing (in {{ currency }})
+      </label>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class="form-group mr-4 w-50">
+      <label for="financingGrant">
+        Grant
+        <app-info-icon [tooltip]="tooltips.GRANT"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input type="number"
+               matInput
+               id="financingGrant"
+               formControlName="financingGrant"
+               required
+               min="0">
+        <mat-error *ngIf="hasError('financingGrant')">
+          {{getError('financingGrant')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group w-50">
+      <label for="financingEquity">
+        Equity
+        <app-info-icon [tooltip]="tooltips.EQUITY"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input type="number"
+               matInput
+               id="financingEquity"
+               formControlName="financingEquity"
+               required
+               min="0">
+        <mat-error *ngIf="hasError('financingEquity')">
+          {{getError('financingEquity')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-group w-50">
+    <label for="financingDebt">
+      Debt
+      <app-info-icon [tooltip]="tooltips.DEBT"></app-info-icon>
+    </label>
+    <mat-form-field appearance="outline"
+                    class="mr-2">
+      <input type="number"
+             matInput
+             id="financingDebt"
+             formControlName="financingDebt"
+             required
+             min="0">
+      <mat-error *ngIf="hasError('financingDebt')">
+        {{getError('financingDebt')}}
+      </mat-error>
+    </mat-form-field>
+  </div>
+</form>
+
+<mat-card-actions class="d-flex justify-content-center mt-5">
+  <button class="green-button"
+          mat-raised-button
+          [disabled]="form?.invalid || loading"
+          (click)="onSave()">
+    Save Financial details
+  </button>
+</mat-card-actions>

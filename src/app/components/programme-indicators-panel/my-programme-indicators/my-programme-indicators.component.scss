@@ -1,0 +1,33 @@
+@import "../../../shared/styles/colors";
+@import "../../../shared/styles/shared.scss";
+
+.title {
+  font-weight: $font-weight-900;
+  padding-bottom: $spacing-10;
+  font-size: $spacing-28;
+  color: $c-brand-grey;
+}
+
+.card-box {
+  padding: $spacing-15;
+  float: left;
+}
+
+.show-all-button {
+  color: $c-brand-green;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: $spacing-16;
+  font-weight: $font-weight-500;
+  outline: none;
+  padding: $spacing-5;
+  border: 0px;
+  box-sizing: none;
+  background-color: transparent;
+  text-align: left;
+}
+
+::ng-deep .mat-tab-header {
+  background-color: white;
+}

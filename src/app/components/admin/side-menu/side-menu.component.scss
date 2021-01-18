@@ -1,0 +1,22 @@
+@import "../../../shared/styles/colors";
+@import "../../../shared/styles/variables";
+
+.main-container {
+  min-height: 800px;
+  background-color: $c-grey-light;
+
+  .panel-headers {
+    height: $spacing-40 !important;
+  }
+
+  .sidenav {
+    margin-top: $spacing-10;
+    background-color: $c-grey-light;
+    border-right: none;
+
+    .category {
+      color: $c-black;
+      padding: 0.5em 1em;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<div class="advanced-analytics py-5">
+  <h4 class="pl-100 section-title">Advanced Analytics</h4>
+
+  <div class="d-flex justify-content-center">
+    <button mat-raised-button
+            class="custom-button mat-elevation-z0"
+            [ngClass]="{'custom-button-selected': mode === modes.TECHNICAL }"
+            (click)="changeView(modes.TECHNICAL)">
+      <img [src]="technicalIconUrl"
+           class="icon d-inline-block mr-2">
+      Technical
+    </button>
+
+    <button mat-raised-button
+            class="custom-button mat-elevation-z0"
+            [ngClass]="{'custom-button-selected': mode === modes.SOCIAL }"
+            (click)="changeView(modes.SOCIAL)">
+      <img [src]="socialIconUrl"
+           class="icon d-inline-block mr-2">
+      Social
+    </button>
+
+    <button mat-raised-button
+            class="custom-button mat-elevation-z0"
+            [ngClass]="{'custom-button-selected': mode === modes.FINANCIAL }"
+            (click)="changeView(modes.FINANCIAL)">
+      <img [src]="financialIconUrl"
+           class="icon d-inline-block mr-2">
+      Financial
+    </button>
+  </div>
+
+  <div class="pl-100"
+       *ngIf="filters">
+    <ng-container [ngSwitch]="mode">
+      <app-social-analytics *ngSwitchCase="modes.SOCIAL"
+                            [setFilters]="filters">
+      </app-social-analytics>
+
+      <app-technical-analytics *ngSwitchCase="modes.TECHNICAL"
+                               [setFilters]="filters">
+      </app-technical-analytics>
+
+      <app-financial-analytics *ngSwitchCase="modes.FINANCIAL"
+                               [setFilters]="filters">
+      </app-financial-analytics>
+    </ng-container>
+  </div>
+</div>

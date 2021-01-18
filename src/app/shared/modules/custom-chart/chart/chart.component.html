@@ -1,0 +1,21 @@
+<div class="w-100"
+     *ngIf="config; else placeholder">
+  <canvas baseChart
+          [ngClass]="className"
+          [datasets]="config.datasets"
+          [labels]="config.labels"
+          [options]="config.options"
+          [colors]="config.colors"
+          [legend]="config.legend"
+          [chartType]="config.chartType"
+          [plugins]="plugins">
+  </canvas>
+</div>
+
+<ng-template #placeholder>
+  <div class="chart-placeholder">
+    <div class="chart-wrapper-key d-flex justify-content-center pt-3">
+      {{ key }}
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,213 @@
+<app-logo className="mb-4"></app-logo>
+
+<mat-card class="auth-card-wrapper"
+          [ngClass]="{'d-flex flex-column text-center align-items-center': stage === stages.COMPLETE }">
+  <ng-container>
+    <mat-card-title class="auth-card-title">
+      {{title}}
+    </mat-card-title>
+
+    <mat-card-subtitle *ngIf="subtitle"
+                       class="auth-card-subtitle my-5">
+      {{subtitle}}
+    </mat-card-subtitle>
+
+    <mat-card-content class="auth-card-content d-flex flex-column"
+                      [ngSwitch]="stage">
+      <ng-container *ngSwitchCase="stages.FULL_NAME">
+        <div class="form-group w-50">
+          <label for="fullName">Full Name</label>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   id="fullName"
+                   [formControl]="fullName"
+                   required>
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="stages.COMPANY"
+                    [formGroup]="companyForm">
+        <div class="form-group w-50">
+          <label for="companyId">{{ organisationLabel }}</label>
+          <mat-form-field appearance="outline">
+            <mat-select id="companyId"
+                        [required]="hideCompanyDetails"
+                        formControlName="companyId">
+              <mat-option [value]="0">None</mat-option>
+              <mat-option *ngFor="let option of companies"
+                          [value]="option.id">
+                {{option.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div [hidden]="hideCompanyDetails">
+          <div class="form-group">
+            <label for="companyName">{{ organisationLabel }} Name</label>
+            <mat-form-field appearance="outline">
+              <input matInput
+                     id="companyName"
+                     formControlName="companyName"
+                     required>
+              <mat-error *ngIf="hasError('companyName')">
+                {{getError('companyName')}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="d-flex">
+            <div class="form-group w-75">
+              <label for="street">Street</label>
+              <mat-form-field appearance="outline">
+                <input matInput
+                       id="street"
+                       formControlName="street"
+                       required>
+                <mat-error *ngIf="hasError('street')">
+                  {{getError('street')}}
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="ml-4 form-group w-25">
+              <label for="number">Number</label>
+              <mat-form-field appearance="outline">
+                <input matInput
+                       id="number"
+                       formControlName="number"
+                       required>
+                <mat-error *ngIf="hasError('number')">
+                  {{getError('number')}}
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="city">City</label>
+            <mat-form-field appearance="outline">
+              <input matInput
+                     id="city"
+                     formControlName="city"
+                     required>
+              <mat-error *ngIf="hasError('city')">
+                {{getError('city')}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="d-flex">
+            <div class="form-group w-50">
+              <label for="stateId">
+                {{ administrativeUnitLabel }}
+                <app-info-icon [tooltip]="getTooltip(administrativeUnitLabel)"></app-info-icon>
+              </label>
+              <mat-form-field appearance="outline">
+                <mat-select [placeholder]="getPlaceholder(administrativeUnitLabel)"
+                            required
+                            id="stateId"
+                            formControlName="stateId">
+                  <mat-option>
+                    <ngx-mat-select-search [formControl]="statesFilterControl"
+                                           placeholderLabel="Search"
+                                           noEntriesFoundLabel="No State found">
+                    </ngx-mat-select-search>
+                  </mat-option>
+                  <mat-option *ngFor="let option of filteredStates"
+                              [value]="option.id">
+                    {{option.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="hasError('stateId')">
+                  {{getError('stateId')}}
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group w-50 ml-4">
+              <label for="localGovernmentAreaId">
+                {{ lgaLabel }}
+                <app-info-icon [tooltip]="getTooltip(lgaLabel)"></app-info-icon>
+              </label>
+              <mat-form-field appearance="outline">
+                <mat-select [placeholder]="getPlaceholder(lgaLabel)"
+                            required
+                            id="localGovernmentAreaId"
+                            formControlName="localGovernmentAreaId">
+                  <mat-option *ngFor="let option of lgas"
+                              [value]="option.id">
+                    {{option.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="hasError('localGovernmentAreaId')">
+                  {{getError('localGovernmentAreaId')}}
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="stages.CONTACT"
+                    [formGroup]="contactForm">
+        <label class="phone-number">Contact phone number</label>
+        <div class="d-flex w-75">
+          <mat-form-field appearance="outline"
+                          class="phone-number-prefix">
+            <input matInput
+                   placeholder="+ 49"
+                   formControlName="phoneNumberPrefix"
+                   required>
+            <mat-error *ngIf="hasError('phoneNumberPrefix')">
+              {{getError('phoneNumberPrefix')}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline"
+                          class="ml-4 w-100">
+            <input matInput
+                   formControlName="phoneNumber"
+                   maxlength="12"
+                   required>
+            <mat-error *ngIf="hasError('phoneNumber')">
+              {{getError('phoneNumber')}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group w-75">
+          <label for="websiteUrl">{{ organisationLabel }} website</label>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   type="url"
+                   id="websiteUrl"
+                   formControlName="websiteUrl">
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="stages.COMPLETE">
+        <div class="text-center mb-5">
+          You can already access all dashboard functions, but your data is not yet integrated until you account is
+          approved.
+        </div>
+
+        <div class="text-center mt-5 mb-3">
+          <img [src]="icons.circleCheck"
+               class="icon-large">
+        </div>
+      </ng-container>
+    </mat-card-content>
+  </ng-container>
+
+  <mat-card-actions class="d-flex justify-content-end"
+                    [ngClass]="stage === stages.COMPLETE ? 'justify-content-center' : 'justify-content-end'">
+    <a [ngClass]="{'green-link-disabled': !isValid()}"
+       (click)="nextStage($event)"
+       class="green-link">
+      {{buttonText}}
+    </a>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,38 @@
+<mat-sidenav-container class="main-container">
+  <mat-sidenav mode="side"
+               opened
+               #sidenav
+               class="sidenav bg-faded"
+               [ngStyle]="width"
+               role="navigation"
+               disableClose>
+
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let buttonGroup of buttonGroups; let i = index"
+                           [expanded]="buttonGroup.expanded">
+        <mat-expansion-panel-header class="panel-headers">
+          <span class="category d-flex">
+            {{buttonGroup.groupName}}
+          </span>
+        </mat-expansion-panel-header>
+
+        <mat-nav-list routerLinkActive="active">
+          <a mat-list-item
+             *ngFor="let button of buttonGroup.buttons"
+             routerLink="{{buttonGroup.prefix}}/{{button.path}}">
+            {{button.name}}
+          </a>
+        </mat-nav-list>
+
+      </mat-expansion-panel>
+
+    </mat-accordion>
+  </mat-sidenav>
+
+  <mat-sidenav-content [ngStyle]="margin">
+    <div class="panel-content-container container-fluid mb-1 mt-3">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

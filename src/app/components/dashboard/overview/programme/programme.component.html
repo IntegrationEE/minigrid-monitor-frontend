@@ -1,0 +1,16 @@
+<div class="row mr-0">
+  <div class="col-md-4"
+       *ngFor="let indicator of model">
+    <h6 class="mt-4">
+      {{ indicator.title }}
+    </h6>
+    <app-chart-wrapper [value]="indicator.value"
+                       [config]="indicator.chartConfig"
+                       [unitOfMeasure]="indicator.unitOfMeasure"
+                       [mode]="chartMode"
+                       [title]="indicator.description"
+                       [setTarget]="indicator.target"
+                       [key]="indicator.key">
+    </app-chart-wrapper>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<mat-toolbar class="navbar px-0"
+             *ngIf="isAuthenticated">
+  <app-logo className="mb-2 ml-60"
+            isAuthenticated="true">
+  </app-logo>
+
+  <span class="filler"></span>
+
+  <button mat-button
+          class="toolbar-button"
+          [matMenuTriggerFor]="userMenu">
+    <div class="row mx-1 align-items-center">
+      <img [src]="icons.social"
+           class="icon-medium">
+
+      <div class="d-block toolbar-button-username px-3">{{username}}</div>
+      <img [src]="icons.chevron"
+           class="icon-small">
+    </div>
+  </button>
+
+  <mat-menu #userMenu="matMenu"
+            xPosition="after"
+            yPosition="below">
+    <button *ngIf="showMySites"
+            mat-menu-item
+            class="menu-button"
+            [routerLink]="routes.SITES">
+      <img [src]="icons.stack3D"
+           class="icon d-inline-block mr-3 ml-2">
+      My sites
+    </button>
+
+    <button *ngIf="isProgrammeManager"
+            mat-menu-item
+            class="menu-button"
+            [routerLink]="routes.PROGRAMME_INDICATORS">
+      <img [src]="icons.programmesIndicators"
+           class="icon d-inline-block mr-3 ml-2">
+      My Programmes Indicators
+    </button>
+
+    <button *ngIf="!isGuest"
+            mat-menu-item
+            class="menu-button"
+            [routerLink]="routes.USER_PROFILE">
+      <img [src]="icons.gear"
+           class="icon d-inline-block mr-3 ml-2">
+      My account
+    </button>
+
+    <button *ngIf="isHeadOfCompany"
+            mat-menu-item
+            class="menu-button"
+            [routerLink]="routes.COMPANY_USERS">
+      <img [src]="icons.companyUsers"
+           class="icon d-inline-block mr-3 ml-2">
+      Company Users
+    </button>
+
+    <button *ngIf="isAdmin"
+            mat-menu-item
+            class="menu-button"
+            [routerLink]="routes.ADMIN">
+      <img [src]="icons.admin"
+           class="icon d-inline-block mr-3 ml-2">
+      Admin
+    </button>
+
+    <button mat-menu-item
+            (click)="logout()"
+            [ngClass]="{'horizontal-line': !isGuest }"
+            class="menu-button">
+      <img class="icon d-inline-block mr-3 ml-2"
+           [src]="icons.logout">
+      Sign out
+    </button>
+  </mat-menu>
+
+</mat-toolbar>

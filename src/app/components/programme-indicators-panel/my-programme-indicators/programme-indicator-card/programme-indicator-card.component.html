@@ -1,0 +1,22 @@
+<div class="programme-indicator-card"
+     *ngIf="model else plusButton">
+
+  <div class="programme-indicator-card__title">{{ model.name }}</div>
+  <mat-slide-toggle [(ngModel)]="model.isEnabled"
+                    class="switch-icon"
+                    (click)="stopPropagation($event)"
+                    (change)="enableDisable($event, model.id)">
+  </mat-slide-toggle>
+
+  <div class="trash-icon">
+    <img [src]="icons.trash"
+         matTooltip="Delete indicator"
+         (click)="openDialog(model, $event)"
+         matTooltipPosition="above"
+         class="icon-medium d-inline-block mr-2 ml-1">
+  </div>
+</div>
+
+<ng-template #plusButton>
+  <div class="programme-indicator-card new-card">+</div>
+</ng-template>

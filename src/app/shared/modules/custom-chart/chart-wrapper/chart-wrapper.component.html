@@ -1,0 +1,111 @@
+<ng-container [ngSwitch]="mode">
+  <!-- ADVANCED -->
+  <mat-card *ngSwitchCase="modes.ADVANCED"
+            class="mat-card-shadow py-3 col-md-11">
+    <mat-card-title class="analytics-title mb-3">
+      {{title}}
+      <app-info-icon [tooltip]="tooltip"></app-info-icon>
+    </mat-card-title>
+
+    <mat-card-content class="chart-wrapper">
+      <app-chart [config]="configChart"
+                 className="analytics-chart pb-2"
+                 [plugins]="plugins">
+      </app-chart>
+
+      <img *ngIf="!hideExportMenu"
+           [src]="icons.ribbon"
+           class="pr-5 chart-wrapper-menu"
+           [matMenuTriggerFor]="exportMenu">
+
+      <mat-menu #exportMenu="matMenu"
+                yPosition="above"
+                xPosition="before">
+        <button mat-menu-item
+                class="menu-button"
+                (click)="exportData(fileFormats.CSV)">
+          <img [src]="icons.download"
+               class="icon-small d-inline-block mr-2">
+          Save as <b>CSV</b>
+        </button>
+
+        <button mat-menu-item
+                class="menu-button"
+                (click)="exportData(fileFormats.XLS)">
+          <img [src]="icons.download"
+               class="icon-small d-inline-block mr-2">
+          Save as <b>XLS</b>
+        </button>
+      </mat-menu>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- PORTFOLIO -->
+  <mat-card *ngSwitchCase="modes.PORTFOLIO"
+            class="mat-card-shadow py-3 col-md-10">
+    <div class="text-right chart-wrapper-icon mt-2 mr-2"
+         *ngIf="iconUrl">
+      <img [src]="iconUrl"
+           class="icon">
+      <div class="text-right trend-value">{{trend > 0 ? '+' : ''}}{{trend}}%</div>
+    </div>
+
+    <mat-card-title class="chart-wrapper-value d-flex justify-content-center">
+      <div>
+        <span class="d-inline-block chart-wrapper-title mr-2">{{value | customNumber}}</span>
+        <span *ngIf="unitOfMeasure"
+              class="d-inline-block chart-wrapper-unit-of-measure">
+          {{unitOfMeasure}}
+        </span>
+      </div>
+    </mat-card-title>
+
+    <mat-card-subtitle class="chart-wrapper-subtitle d-flex justify-content-center">
+      <div class="w-60 text-center">
+        {{title}}
+      </div>
+    </mat-card-subtitle>
+
+    <mat-card-content class="chart-wrapper">
+      <app-chart *ngIf="!isOnlyOnePoint; else onePointTemplate"
+                 [config]="configChart"></app-chart>
+      <ng-template #onePointTemplate>
+        <app-chart [key]="key"></app-chart>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- PROGRAMME -->
+  <mat-card *ngSwitchCase="modes.PROGRAMME"
+            class="mat-card-shadow py-3 col-md-10">
+    <div class="text-right chart-wrapper-icon mt-4 mr-5"
+         *ngIf="isTargetAchieved">
+      <img [src]="checkmarkIconUrl"
+           class="icon">
+    </div>
+
+    <mat-card-title class="chart-wrapper-value d-flex justify-content-center">
+      <div>
+        <span class="d-inline-block chart-wrapper-title mr-2">{{value | customNumber}}</span>
+        <span *ngIf="unitOfMeasure"
+              class="d-inline-block chart-wrapper-unit-of-measure">
+          {{unitOfMeasure}}
+        </span>
+      </div>
+    </mat-card-title>
+
+    <mat-card-subtitle class="chart-wrapper-subtitle d-flex flex-column justify-content-center">
+      <div class="text-center">
+        {{title}}
+      </div>
+    </mat-card-subtitle>
+
+    <mat-card-content class="chart-wrapper">
+      <app-chart *ngIf="!isOnlyOnePoint; else onePointTemplate"
+                 [config]="configChart"></app-chart>
+      <ng-template #onePointTemplate>
+        <app-chart [key]="key"></app-chart>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</ng-container>

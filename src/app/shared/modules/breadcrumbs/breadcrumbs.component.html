@@ -1,0 +1,12 @@
+<div class="my-5">
+  <ol class="breadcrumbs-container">
+    <li *ngFor="let breadcrumb of breadcrumbs; let isLast = last"
+        class="breadcrumb-item d-inline">
+      <a class="breadcrumb-link"
+         (click)="redirect(breadcrumb.url)"
+         [ngClass]="{'breadcrumb-link-last': isLast }">
+        {{breadcrumb.label}}
+      </a>
+    </li>
+  </ol>
+</div>

@@ -1,0 +1,37 @@
+<div class="modal-container"
+     [ngSwitch]="data.action">
+  <h1 mat-dialog-title>{{capitalize(data.action)}} Programme</h1>
+  <div mat-dialog-content
+       *ngSwitchCase="actionType.DELETE">
+    <p>Are you certain to remove this Programme?</p>
+  </div>
+
+  <ng-container *ngSwitchDefault>
+    <form [formGroup]="form"
+          *ngIf="data">
+      <div mat-dialog-content>
+        <mat-form-field>
+          <input type="text"
+                 matInput
+                 placeholder="Name"
+                 formControlName="name"
+                 required>
+        </mat-form-field>
+      </div>
+    </form>
+  </ng-container>
+
+  <div class="dialog-buttons-container"
+       mat-dialog-actions>
+    <button mat-flat-button
+            mat-dialog-close>
+      Cancel
+    </button>
+    <button mat-stroked-button
+            color="primary"
+            [disabled]="loading"
+            (click)="onConfirm()">
+      Confirm
+    </button>
+  </div>
+</div>

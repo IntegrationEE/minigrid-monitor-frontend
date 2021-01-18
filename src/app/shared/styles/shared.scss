@@ -1,0 +1,339 @@
+@import "./_variables.scss";
+@import "./colors.scss";
+
+::ng-deep
+  .mat-form-field-appearance-outline.mat-focused
+  .mat-form-field-outline-thick {
+  color: $c-grey-dark !important;
+}
+
+::ng-deep .mat-datepicker-toggle-active,
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: $c-grey-dark !important;
+}
+
+::ng-deep .mat-calendar-body-selected {
+  background-color: $c-brand-green;
+}
+
+.section-title {
+  color: $c-brand-green;
+  font-family: "Poppins";
+  font-weight: bold;
+}
+
+.custom-button {
+  background-color: $c-white;
+  border: 1px solid $c-grey !important;
+  font-size: $spacing-20;
+  min-width: 180px !important;
+
+  &-selected {
+    color: $c-brand-green;
+    border: 1px solid $c-brand-green !important;
+  }
+}
+
+.icon {
+  max-height: $spacing-24;
+  max-width: $spacing-24;
+
+  &-medium {
+    max-height: $spacing-20;
+    max-width: $spacing-24;
+  }
+
+  &-small {
+    max-height: $spacing-16;
+    max-width: $spacing-24;
+  }
+
+  &-large {
+    max-height: $spacing-40;
+    max-width: $spacing-40;
+  }
+}
+
+.custom-button:disabled {
+  background-color: $c-grey-disabled-background !important;
+  color: $c-grey-disabled-font;
+  border: 1px solid $c-grey-disabled-font !important;
+}
+
+.custom-table {
+  &-header {
+    max-height: $spacing-40;
+    margin-bottom: $spacing-20;
+  }
+
+  .cell-title {
+    font-size: $spacing-16;
+    font-family: "Poppins";
+  }
+
+  mat-table {
+    border: 1px solid $c-grey-light;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    box-shadow: none !important;
+  }
+
+  mat-panel-title mat-checkbox {
+    margin-right: $spacing-10;
+    margin-top: $spacing-2;
+  }
+
+  mat-paginator {
+    border: 1px solid $c-grey-light;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    box-shadow: none !important;
+  }
+
+  .bottom-spacing button {
+    float: right;
+  }
+
+  .data-type-container {
+    margin-left: $spacing-20;
+  }
+
+  mat-cell {
+    padding-right: $spacing-10;
+  }
+
+  .btn {
+    margin-left: $spacing-5;
+  }
+
+  .mat-raised-button {
+    margin-right: $spacing-5;
+    margin-bottom: 1px;
+  }
+
+  .placeholders {
+    padding-bottom: $spacing-48;
+  }
+
+  .small-cell {
+    max-width: 80px;
+  }
+
+  .small-extended-cell {
+    max-width: 120px;
+  }
+
+  .medium-cell {
+    max-width: 220px;
+  }
+
+  .medium-extended-cell {
+    max-width: 320px;
+  }
+
+  .large-cell {
+    max-width: 400px;
+  }
+
+  .cell-focus:hover {
+    color: $c-brand-green;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .buttons {
+    min-width: 260px;
+  }
+
+  .number-value {
+    width: 95%;
+    text-align: right;
+  }
+
+  .ellipsis-cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .table-row > mat-cell:first-child {
+    padding-left: $spacing-40;
+  }
+}
+
+.ellipsis-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ml-60 {
+  margin-left: $spacing-60;
+}
+
+.pl-100 {
+  padding-left: $spacing-100 !important;
+}
+
+.pl-150 {
+  padding-left: $spacing-150;
+}
+
+.pr-150 {
+  padding-right: $spacing-150 !important;
+}
+
+.pb-100 {
+  padding-bottom: $spacing-100;
+}
+
+.py-50 {
+  padding-top: $spacing-50 !important;
+  padding-bottom: $spacing-50 !important;
+}
+
+.px-200 {
+  padding-left: $spacing-200;
+  padding-right: $spacing-200;
+}
+
+app-svg-icon {
+  height: 20px;
+  width: 20px;
+  vertical-align: text-top !important;
+}
+
+mat-checkbox {
+  font-family: "Source Sans Pro" !important;
+}
+
+.modal-container {
+  mat-form-field {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .dialog-buttons-container {
+    justify-content: center;
+
+    button {
+      margin: 5px;
+    }
+  }
+}
+
+.custom-tabs {
+  .mat-tab-header {
+    border-bottom: none;
+  }
+
+  .mat-tab-label {
+    color: $c-brand-grey;
+    font-size: $spacing-16;
+    border-bottom: 3px solid $c-grey;
+    &-active {
+      color: $c-brand-green;
+      font-weight: 700;
+    }
+  }
+
+  .mat-ink-bar {
+    background-color: $c-brand-green !important;
+    height: $spacing-5;
+  }
+}
+
+.green {
+  &-button {
+    color: $c-white !important;
+    font-family: "Poppins";
+    background-color: $c-brand-green !important;
+  }
+
+  &-link {
+    color: $c-brand-green !important;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      color: $c-brand-green !important;
+    }
+
+    &-disabled {
+      color: $c-grey-dark !important;
+      cursor: not-allowed;
+      &:hover {
+        color: $c-grey-dark !important;
+      }
+    }
+  }
+}
+
+.yellow {
+  &-button {
+    color: $c-white !important;
+    font-family: "Poppins";
+    background-color: $c-secondary-yellow-dark !important;
+  }
+}
+
+.map-container {
+  height: 400px;
+
+  > div {
+    height: 100%;
+  }
+}
+
+.spinner-container {
+  z-index: 100;
+  position: absolute;
+  top: 15%;
+  transform: translateX(-100%);
+  left: 50%;
+  min-height: $spacing-200;
+}
+
+.card-frame {
+  height: 200px;
+  width: 230px;
+  background-color: $c-white;
+  border-radius: 5px;
+  padding: $spacing-20;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.new-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $spacing-60;
+  font-weight: $font-weight-100;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.no-pointer {
+  pointer-events: none;
+}
+
+.blurred {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

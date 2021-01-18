@@ -1,0 +1,38 @@
+@import "../shared/styles/variables";
+@import "../shared/styles/colors";
+
+.filler {
+  flex: 1 1 auto;
+}
+
+.navbar {
+  background-color: $c-white;
+}
+
+.toolbar-button {
+  color: $c-grey-dark;
+  border-color: $c-grey-dark;
+
+  &-username {
+    font-family: "Source Sans Pro";
+    font-size: $spacing-16;
+    margin-top: -$spacing-5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.menu-button {
+  min-width: 250px;
+  text-align: left;
+  font-family: "Poppins";
+}
+
+.horizontal-line {
+  border-top: 3px solid $c-grey-light;
+}
+
+.logout-btn {
+  margin-top: -$spacing-15;
+}

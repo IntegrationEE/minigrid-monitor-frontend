@@ -1,0 +1,17 @@
+@import "../../shared/styles/variables";
+@import "../../shared/styles/colors";
+@import "../../shared/styles/shared.scss";
+
+.title {
+  font-weight: $font-weight-900;
+  padding-bottom: $spacing-10;
+  font-size: $spacing-28;
+  color: $c-brand-grey;
+}
+
+.phone-number {
+  font-weight: 700;
+  &-prefix {
+    width: 80px;
+  }
+}

@@ -1,0 +1,68 @@
+<div class="modal-container">
+  <h1 mat-dialog-title>Approve</h1>
+
+  <form [formGroup]="form"
+        *ngIf="data">
+    <div mat-dialog-content>
+      <mat-form-field>
+        <input matInput
+               type="email"
+               placeholder="Email"
+               formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput
+               placeholder="Full Name"
+               formControlName="fullName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Role"
+                    required
+                    formControlName="role">
+          <mat-option *ngFor="let option of roles"
+                      [value]="option.value"
+                      [disabled]="option.value === roleCodes.GUEST">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <ng-container [ngSwitch]="form.value.role">
+        <mat-checkbox *ngSwitchCase="roleCodes.DEVELOPER"
+                      class="d-block"
+                      id="isHeadOfCompany"
+                      name="isHeadOfCompany"
+                      formControlName="isHeadOfCompany">
+          Is Head of Company
+        </mat-checkbox>
+
+        <mat-form-field *ngSwitchCase="roleCodes.PROGRAMME_MANAGER">
+          <mat-select placeholder="Programmes"
+                      multiple
+                      formControlName="programmes">
+            <mat-option *ngFor="let option of programmes"
+                        [value]="option.id">
+              {{option.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+    </div>
+  </form>
+
+  <div class="dialog-buttons-container"
+       mat-dialog-actions>
+    <button mat-flat-button
+            mat-dialog-close>
+      Cancel
+    </button>
+    <button mat-stroked-button
+            class="green-button"
+            [disabled]="loading"
+            (click)="onConfirm()">
+      Confirm
+    </button>
+  </div>
+</div>

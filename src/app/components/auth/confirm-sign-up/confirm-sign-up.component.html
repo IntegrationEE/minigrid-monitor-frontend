@@ -1,0 +1,25 @@
+<mat-card class="auth-card-wrapper d-flex flex-column text-center align-items-center">
+  <mat-card-title class="auth-card-title">
+    You've got mail ;)
+  </mat-card-title>
+
+  <mat-card-subtitle class="auth-card-subtitle w-50 my-5">
+    Please confirm your email address via the link we have just sent you via email.
+  </mat-card-subtitle>
+
+  <mat-card-content class="auth-card-contentw-50 my-5">
+    Did not receive our email?
+    <a (click)="sendAgain()"
+       class="green-link">
+      Send again
+    </a>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button routerLink="/{{routes.AUTH}}/{{routes.SIGN_UP}}"
+            class="green-button"
+            mat-raised-button>
+      Sign In 🡢
+    </button>
+  </mat-card-actions>
+</mat-card>

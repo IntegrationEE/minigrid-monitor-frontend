@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+@import "../../styles/colors";
+
+#confirm-dialog-title {
+  font-size: $spacing-20;
+  font-family: "Source Sans Pro";
+  font-weight: bold;
+}
+
+#confirm-dialog-message {
+  justify-self: right;
+  font-size: $spacing-18;
+  font-family: "Source Sans Pro";
+}
+
+#confirm-dialog-button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+#confirm-dialog-button {
+  font-size: $spacing-18;
+  font-family: "Source Sans Pro";
+  color: $c-white;
+  background-color: $c-brand-green;
+}
+
+.confirm-dialog-action {
+  margin-right: 20px;
+}

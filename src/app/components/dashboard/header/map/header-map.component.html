@@ -1,0 +1,12 @@
+<div class="w-100 h-100 map-container"
+     *ngIf="mapLayers">
+  <div leaflet
+       [leafletOptions]="options"
+       [leafletLayers]="mapLayers"
+       (leafletMapReady)="onMapReady($event)">
+    <div class="defaultMarker"
+         *ngFor="let m of markers"
+         [leafletLayer]="m">
+    </div>
+  </div>
+</div>

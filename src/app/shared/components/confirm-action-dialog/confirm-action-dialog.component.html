@@ -1,0 +1,26 @@
+<h1 mat-dialog-title
+    id="confirm-dialog-title">
+  {{title}}
+</h1>
+
+<div mat-dialog-content
+     id="confirm-dialog-message">
+  <p>{{message}}</p>
+</div>
+
+<div mat-dialog-actions
+     id="confirm-dialog-button-wrapper">
+  <button mat-raised-button
+          id="confirm-dialog-button"
+          class="confirm-dialog-action"
+          [mat-dialog-close]="true">
+    {{action}}
+  </button>
+
+  <button mat-raised-button
+          id="confirm-dialog-button"
+          [mat-dialog-close]="false"
+          cdkFocusInitial>
+    {{cancel}}
+  </button>
+</div>

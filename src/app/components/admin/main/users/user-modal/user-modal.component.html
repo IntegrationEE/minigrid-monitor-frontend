@@ -1,0 +1,94 @@
+<div class="modal-container"
+     [ngSwitch]="data.action">
+  <h1 mat-dialog-title>{{capitalize(data.action)}} User</h1>
+  <div mat-dialog-content
+       *ngSwitchCase="actionType.DELETE">
+    <p>Are you certain to remove this User?</p>
+  </div>
+
+  <ng-container *ngSwitchDefault>
+    <form [formGroup]="form"
+          *ngIf="data">
+      <div mat-dialog-content>
+        <mat-form-field>
+          <input matInput
+                 placeholder="Username"
+                 formControlName="login"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 type="email"
+                 placeholder="Email"
+                 formControlName="email"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 placeholder="Full Name"
+                 formControlName="fullName"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select [placeholder]="organisationLabel"
+                      required
+                      formControlName="companyId">
+            <mat-option *ngFor="let option of companies"
+                        [value]="option.id">
+              {{option.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Role"
+                      required
+                      formControlName="role">
+            <mat-option *ngFor="let option of roles"
+                        [value]="option.value">
+              {{option.label}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <ng-container [ngSwitch]="form.value.role">
+          <mat-checkbox *ngSwitchCase="roleCodes.DEVELOPER"
+                        class="d-block"
+                        id="isHeadOfCompany"
+                        name="isHeadOfCompany"
+                        formControlName="isHeadOfCompany">
+            Is Head of Company
+          </mat-checkbox>
+
+          <mat-form-field *ngSwitchCase="roleCodes.PROGRAMME_MANAGER">
+            <mat-select placeholder="Programmes"
+                        multiple
+                        formControlName="programmes">
+              <mat-option *ngFor="let option of programmes"
+                          [value]="option.id">
+                {{option.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+      </div>
+    </form>
+  </ng-container>
+
+  <div class="dialog-buttons-container"
+       mat-dialog-actions>
+    <button mat-flat-button
+            mat-dialog-close>
+      Cancel
+    </button>
+    <button mat-stroked-button
+            color="primary"
+            [disabled]="loading"
+            (click)="onConfirm()">
+      Confirm
+    </button>
+  </div>
+</div>

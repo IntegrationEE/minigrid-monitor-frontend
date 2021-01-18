@@ -1,0 +1,177 @@
+<div class="custom-table">
+  <div class="custom-table-header d-flex justify-content-between">
+    <app-input-filter class="w-75"
+                      (onValueChange)="onFilter($event)"
+                      placeholder="Filter">
+    </app-input-filter>
+
+    <button *ngIf="config.actions.create"
+            (click)="openDialog(null, actionType.CREATE)"
+            color="primary"
+            type="button"
+            mat-raised-button>
+      Add New +
+    </button>
+  </div>
+
+  <div *ngIf="loading"
+       class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="mat-elevation-z8"
+       [hidden]="loading">
+    <mat-table [dataSource]="dataSource"
+               matSort>
+
+      <ng-container *ngFor="let col of config.columns; let i = index"
+                    [matColumnDef]="col.name">
+
+        <!-- headers -->
+        <ng-container [ngSwitch]="col.type">
+          <!-- headers: actions -->
+          <ng-container *ngSwitchCase="columnType.ACTIONS">
+            <mat-header-cell *matHeaderCellDef
+                             class="medium-cell">
+              Actions
+            </mat-header-cell>
+          </ng-container>
+
+          <!-- headers: check -->
+          <ng-container *ngSwitchCase="columnType.CHECK">
+            <mat-header-cell *matHeaderCellDef
+                             class="small-cell">
+              {{col.title ? col.title : 'Is Active'}}
+            </mat-header-cell>
+          </ng-container>
+
+          <!-- headers: default (sortable / not sortable) -->
+          <ng-container *ngSwitchDefault>
+            <ng-container *ngIf="col.sortable; else noSort">
+              <mat-header-cell *matHeaderCellDef
+                               [ngClass]="{'large-cell': i > 0}"
+                               mat-sort-header>
+                {{col.title ? col.title : (col.name | titlecase)}}
+              </mat-header-cell>
+            </ng-container>
+            <ng-template #noSort>
+              <mat-header-cell *matHeaderCellDef
+                               [ngClass]="{'large-cell': i > 0}">
+                {{col.title ? col.title : (col.name | titlecase)}}
+              </mat-header-cell>
+            </ng-template>
+          </ng-container>
+        </ng-container>
+
+        <!-- content -->
+        <ng-container [ngSwitch]="col.type">
+          <!-- content: actions -->
+          <ng-container *ngSwitchCase="columnType.ACTIONS">
+            <mat-cell *matCellDef="let element"
+                      class="medium-cell">
+              <div class="pointer pr-3"
+                   *ngIf="config.actions.edit(element)">
+                <img [src]="icons.editGreen"
+                     matTooltip="Edit"
+                     (click)="openDialog(element, actionType.EDIT)"
+                     matTooltipPosition="above"
+                     class="icon-medium">
+              </div>
+
+              <div class="pointer pr-3"
+                   *ngIf="config.actions.delete">
+                <img [src]="icons.trash"
+                     matTooltip="Delete"
+                     (click)="openDialog(element, actionType.DELETE)"
+                     matTooltipPosition="above"
+                     class="icon-medium">
+              </div>
+
+              <ng-container *ngIf="config.actions.customs">
+                <ng-container *ngIf="config.actions.customs.length > 1; else singleCustomButton">
+                  <div class="pointer pr-3"
+                       [matMenuTriggerFor]="exportMenu">
+                    <img [src]="icons.ribbon">
+                  </div>
+                  <mat-menu #exportMenu="matMenu">
+                    <ng-container *ngFor="let button of config.actions.customs">
+                      <button *ngIf="button.enabled(element)"
+                              (click)="button.action(element.id)"
+                              mat-menu-item
+                              color="primary">
+                        {{ button.label }}
+                      </button>
+                    </ng-container>
+                  </mat-menu>
+                </ng-container>
+                <ng-template #singleCustomButton>
+                  <div class="pointer pr-3"
+                       *ngIf="config.actions.customs[0].enabled(element)">
+                    <img [src]="icons.circleCheck"
+                         [matTooltip]="config.actions.customs[0].label"
+                         (click)="config.actions.customs[0].action(element.id)"
+                         matTooltipPosition="above"
+                         class="icon-medium">
+                  </div>
+                </ng-template>
+              </ng-container>
+            </mat-cell>
+          </ng-container>
+
+          <!-- content: array -->
+          <ng-container *ngSwitchCase="columnType.ARRAY">
+            <mat-cell *matCellDef="let element"
+                      class="large-cell">
+              <span class="ellipsis-cell">
+                <ng-container *ngFor="let item of element[col.arrKey]; let isLast = last">
+                  {{item[col.arrValue]}}{{isLast ? '' : ',&nbsp;'}}
+                </ng-container>
+              </span>
+            </mat-cell>
+          </ng-container>
+
+          <!-- content: check -->
+          <ng-container *ngSwitchCase="columnType.CHECK">
+            <mat-cell *matCellDef="let element"
+                      class="small-cell">
+              <div class="cell-icon">
+                {{ element[col.name] | yesNo }}
+              </div>
+            </mat-cell>
+          </ng-container>
+
+          <!-- content: custom -->
+          <ng-container *ngSwitchCase="columnType.CUSTOM">
+            <mat-cell *matCellDef="let element"
+                      class="large-cell">
+              <span class="ellipsis-cell"
+                    [matTooltip]="getValue(element, col)">
+                {{getValue(element, col)}}
+              </span>
+            </mat-cell>
+          </ng-container>
+
+          <!-- content: default -->
+          <ng-container *ngSwitchDefault>
+            <mat-cell *matCellDef="let element"
+                      [ngClass]="{'large-cell': i > 0 }">
+              <span class="ellipsis-cell"
+                    [matTooltip]="col.value ? element[col.value] : element[col.name]">
+                {{col.value ? element[col.value] : element[col.name]}}
+              </span>
+            </mat-cell>
+          </ng-container>
+        </ng-container>
+
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSize]="15"
+                   [pageSizeOptions]="[15, 50, 100]"
+                   [showFirstLastButtons]="true">
+    </mat-paginator>
+  </div>
+</div>

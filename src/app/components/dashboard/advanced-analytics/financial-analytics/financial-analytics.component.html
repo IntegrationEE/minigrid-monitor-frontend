@@ -1,0 +1,29 @@
+<div class="row mt-4 mr-0 justify-content-between">
+  <app-chart-wrapper class="col-md-6"
+                     [config]="financingConfig"
+                     [mode]="chartMode"
+                     (onExportData)="exportData(chartTypes.FINANCING_STRUCTURE, $event)">
+  </app-chart-wrapper>
+
+  <app-chart-wrapper class="col-md-6"
+                     [config]="capexConfig"
+                     [mode]="chartMode"
+                     [setCenterText]="capexInfo"
+                     (onExportData)="exportData(chartTypes.CAPEX, $event)">
+  </app-chart-wrapper>
+</div>
+
+<div class="row mt-5 mr-0 justify-content-between">
+  <app-chart-wrapper class="col-md-6"
+                     [config]="opexConfig"
+                     [mode]="chartMode"
+                     [setCenterText]="opexInfo"
+                     (onExportData)="exportData(chartTypes.OPEX, $event)">
+  </app-chart-wrapper>
+
+  <app-chart-wrapper class="col-md-6"
+                     [config]="revenueConfig"
+                     [mode]="chartMode"
+                     (onExportData)="exportData(chartTypes.REVENUE, $event)">
+  </app-chart-wrapper>
+</div>

@@ -1,0 +1,57 @@
+<mat-card class="auth-card mt-4">
+  <form [formGroup]="form">
+    <mat-card-content class="auth-card-content d-flex flex-column align-items-center">
+      <div class="form-group w-50">
+        <label for="username">Email address</label>
+        <mat-form-field appearance="outline">
+          <input matInput
+                 id="username"
+                 autocomplete="username"
+                 formControlName="username"
+                 required
+                 (keydown)="onKeyDown($event)">
+          <mat-error>
+            <strong>Username</strong> is required!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group w-50">
+        <label for="password">Password
+          <a class="float-right"
+             [routerLink]="forgotPasswordUrl">
+            Forgot password?
+          </a>
+        </label>
+
+        <mat-form-field appearance="outline">
+          <input matInput
+                 id="password"
+                 type="password"
+                 autocomplete="current-password"
+                 formControlName="password"
+                 required
+                 (keydown)="onKeyDown($event)">
+          <mat-error>
+            <strong>Password</strong> is required!
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </form>
+
+  <mat-card-actions class="d-flex justify-content-center">
+    <button class="green-button ml-3 mr-3"
+            mat-raised-button
+            [disabled]="loading"
+            (click)="login(false)">
+      Sign In
+    </button>
+    <button class="yellow-button"
+            mat-raised-button
+            [disabled]="loading"
+            (click)="login(true)">
+      Continue as guest
+    </button>
+  </mat-card-actions>
+</mat-card>

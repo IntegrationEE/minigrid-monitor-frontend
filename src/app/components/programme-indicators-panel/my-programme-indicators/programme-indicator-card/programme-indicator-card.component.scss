@@ -1,0 +1,41 @@
+@import "../../../../shared/styles/variables";
+@import "../../../../shared/styles/colors";
+@import "../../../../shared/styles/shared.scss";
+
+.programme-indicator-card {
+  @extend .card-frame;
+
+  &__title {
+    font-weight: $font-weight-700;
+    padding-top: $spacing-15;
+    padding-left: $spacing-10;
+    font-size: $spacing-16;
+    color: $c-brand-grey;
+  }
+}
+
+::ng-deep mat-tooltip-component {
+  & .mat-tooltip {
+    font-size: $spacing-14;
+    background-color: $c-brand-grey;
+  }
+}
+
+.switch-icon {
+  padding-top: $spacing-90;
+  padding-left: $spacing-10;
+  float: left;
+}
+
+.trash-icon {
+  padding-top: $spacing-85;
+  float: right;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: $c-white;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: $c-brand-green;
+}

@@ -1,0 +1,38 @@
+<div class="row mt-4 mx-0">
+  <app-site-menu class="col-md-3"
+                 [setMode]="menuMode"
+                 (onPageChange)="changePage($event)">
+  </app-site-menu>
+  <div class="col-md-8 d-flex justify-content-center"
+       [ngSwitch]="currentPage">
+
+    <app-social-indicators *ngSwitchCase="pages.SOCIAL"
+                           class="w-100">
+    </app-social-indicators>
+
+    <span *ngIf="[pages.TECHNICAL, pages.FINANCIAL].includes(currentPage)"
+          class="w-100">
+      <div class="d-flex">
+        <div class="form-group w-100">
+          <label for="topic">
+            Select topic
+            <app-info-icon [tooltip]="tooltips.TOPIC"></app-info-icon>
+          </label>
+          <mat-form-field appearance="outline">
+            <mat-select required
+                        id="topic"
+                        required
+                        [formControl]="topic">
+              <mat-option *ngFor="let option of topics"
+                          [value]="option">
+                {{option.label}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <app-year-month-indicators [setIndicatorsOptionValue]="indicatorsOptionValue"></app-year-month-indicators>
+    </span>
+  </div>
+</div>

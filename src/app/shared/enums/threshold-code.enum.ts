@@ -1,0 +1,6 @@
+export enum ThresholdCode {
+  GRID_LENGTH = 1,
+  RENEWABLE_CAPACITY,
+  CONVENTIONAL_CAPACITY,
+  STORAGE_CAPACITY,
+}

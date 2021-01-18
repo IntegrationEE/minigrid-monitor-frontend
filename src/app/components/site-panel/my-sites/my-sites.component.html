@@ -1,0 +1,31 @@
+<app-site-management *ngIf="current; else siteList"
+                     [setSite]="current">
+</app-site-management>
+
+<ng-template #siteList>
+  <div class="container-fluid">
+    <div class="title">My sites</div>
+
+    <div class="row">
+      <div *ngFor="let site of data; let i = index">
+        <div class="site-box"
+             *ngIf="i < maxItemsOnLoad || showAll">
+          <app-site-card [model]="site"
+                         (click)="goToSiteDetails(site)">
+          </app-site-card>
+        </div>
+      </div>
+
+      <div class="site-box">
+        <app-site-card (click)="createNewSite()"></app-site-card>
+      </div>
+    </div>
+
+    <div *ngIf="data.length > maxItemsOnLoad">
+      <button class="show-all-button"
+              (click)="showAllSites()">
+        {{ showAll ? 'Show less' : 'Show all sites ' + '(' + data.length + ')' }}
+      </button>
+    </div>
+  </div>
+</ng-template>

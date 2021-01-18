@@ -1,0 +1,9 @@
+@import "../../../styles/variables";
+
+.close {
+  z-index: 10000;
+  position: absolute;
+  top: 0;
+  font-size: $spacing-20;
+  right: 0;
+}

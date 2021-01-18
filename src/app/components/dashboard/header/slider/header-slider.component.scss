@@ -1,0 +1,26 @@
+@import "../../../../shared/styles/colors";
+@import "../../../../shared/styles/variables";
+
+.h-slider {
+  background-color: $c-white;
+  border-radius: 7px;
+
+  ::ng-deep .ng5-slider-pointer {
+    width: $spacing-10;
+    height: $spacing-10;
+    top: -3px;
+    left: $spacing-12;
+    outline: none;
+  }
+
+  ::ng-deep .ng5-slider-pointer:after {
+    top: 1px;
+    left: 1px;
+    background-color: $c-white !important;
+    outline: none;
+  }
+
+  ::ng-deep .ng5-slider-tick {
+    left: -$spacing-11;
+  }
+}

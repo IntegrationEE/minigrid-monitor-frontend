@@ -1,0 +1,110 @@
+<div class="header pl-100">
+  <div class="row mx-0">
+    <div class="pl-0 col-md-7">
+      <h4 class="pt-5 pb-3 section-title">Select Portfolio</h4>
+
+      <div class="d-flex justify-content-between pb-4"
+           *ngIf="filter">
+        <app-header-filter class="d-flex flex-column pl-0 pr-4 col-md-3"
+                           [setTitle]="administrativeUnitLabel"
+                           [setData]="states"
+                           [setCallback]="onStatesChange">
+        </app-header-filter>
+
+        <app-header-filter class="d-flex flex-column pl-0 pr-4 col-md-3"
+                           setTitle="Programme"
+                           [setData]="programmes"
+                           [setCallback]="onProgrammesChange">
+        </app-header-filter>
+
+        <app-header-filter class="d-flex flex-column pl-0 pr-4 col-md-3"
+                           [setTitle]="organisationLabel"
+                           [setData]="companies"
+                           [setCallback]="onCompaniesChange">
+        </app-header-filter>
+
+        <div class="px-0 col-md-3 h-filter">
+          <div class="form-group w-100 mb-0">
+            <label class="h-filter__title"
+                   for="siteName">
+              Site name
+            </label>
+            <mat-form-field appearance="none"
+                            class="px-3 h-filter__search mb-3">
+              <input matInput
+                     id="siteName"
+                     placeholder="Site name"
+                     [matAutocomplete]="auto"
+                     [formControl]="siteControl"
+                     #trigger="matAutocompleteTrigger">
+              <img [src]="magnifierIconUrl"
+                   class="icon-small mr-2"
+                   matPrefix>
+              <mat-icon matSuffix
+                        class="closeIcon"
+                        *ngIf="siteControl.value"
+                        (click)="clear(trigger)">
+                close
+              </mat-icon>
+              <mat-autocomplete #auto="matAutocomplete"
+                                (closed)="onSiteClosed()">
+                <mat-option *ngFor="let option of filteredSites"
+                            [value]="option.name">
+                  {{ option.name }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+
+          <app-header-slider [setMinFrom]="minCapacity"
+                             [setMaxTo]="maxCapacity"
+                             [setDisabled]="disableCapacitySlider || isGuest"
+                             [setFrom]="filter.from"
+                             [setTo]="filter.to"
+                             (fromChange)="onFromChange($event)"
+                             (toChange)="onToChange($event)">
+          </app-header-slider>
+
+          <app-header-enum setTitle="Technology"
+                           [setData]="technologies"
+                           [setCallback]="onTechnologyChange">
+          </app-header-enum>
+
+          <app-header-enum setTitle="Connection Type"
+                           [setData]="gridConnections"
+                           [setCallback]="onGridConnectionChange">
+          </app-header-enum>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-template px-0 col-md-5">
+      <ng-container [ngSwitch]="templateMode">
+        <app-header-list *ngSwitchCase="modes.LIST"
+                         [setFilters]="filter">
+        </app-header-list>
+        <app-header-map id="LeafletMap"
+                        *ngSwitchDefault
+                        [setFilters]="filter">
+        </app-header-map>
+      </ng-container>
+
+      <div class="h-template__buttons">
+        <button class="h-template__btn h-template__btn--map"
+                [ngClass]="{'active': templateMode === modes.MAP }"
+                (click)="onTemplateChange(modes.MAP)">
+          <img [src]="mapIconUrl"
+               class="icon-small d-inline-block mr-2">
+          Map
+        </button>
+        <button class="h-template__btn h-template__btn--list"
+                [ngClass]="{'active': templateMode === modes.LIST }"
+                (click)="onTemplateChange(modes.LIST)">
+          <img [src]="listIconUrl"
+               class="icon-small d-inline-block mr-2">
+          List
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

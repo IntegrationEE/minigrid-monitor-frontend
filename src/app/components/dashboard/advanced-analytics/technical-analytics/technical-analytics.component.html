@@ -1,0 +1,37 @@
+<div class="row mt-4 mr-0 justify-content-between">
+  <app-chart-wrapper *ngIf="overviewMode === overviewModes.PORTFOLIO"
+                     class="col-md-6"
+                     [config]="installedCapacityConfig"
+                     [mode]="chartMode"
+                     (onExportData)="exportData(chartTypes.INSTALLED_CAPACITY, $event)">
+  </app-chart-wrapper>
+
+
+  <app-chart-wrapper *ngIf="overviewMode === overviewModes.SITE && showDailyProfile"
+                     class="col-md-6"
+                     [config]="dailyProfileConfig"
+                     [hideExportMenu]="true"
+                     [mode]="chartMode">
+  </app-chart-wrapper>
+
+
+  <app-chart-wrapper class="col-md-6"
+                     [config]="electricityConfig"
+                     [mode]="chartMode"
+                     (onExportData)="exportData(chartTypes.ELECTRICITY_CONSUMPTION, $event)">
+  </app-chart-wrapper>
+</div>
+
+<div class="row mt-5 mr-0 justify-content-between">
+  <app-chart-wrapper class="col-md-6"
+                     [config]="capacityUtilizationConfig"
+                     [mode]="chartMode"
+                     (onExportData)="exportData(chartTypes.CAPACITY_UTILIZATION, $event)">
+  </app-chart-wrapper>
+
+  <app-chart-wrapper class="col-md-6 chart-canvas"
+                     [config]="averageConsumptionConfig"
+                     [mode]="chartMode"
+                     (onExportData)="exportData(chartTypes.AVERAGE_CONSUMPTIONS, $event)">
+  </app-chart-wrapper>
+</div>

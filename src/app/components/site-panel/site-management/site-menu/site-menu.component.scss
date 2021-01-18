@@ -1,0 +1,70 @@
+@import "../../../../shared/styles/colors";
+@import "../../../../shared/styles/variables";
+
+.option {
+  color: $c-grey;
+  font-family: 'Source Sans Pro';
+  cursor: pointer;
+
+  &-active {
+    font-weight: 700;
+    color: $c-black;
+  }
+}
+
+.circle {
+  vertical-align: middle;
+  width: $spacing-10;
+  height: $spacing-10;
+  border-radius: 50%;
+
+  &-red {
+    background-color: $c-status-red;
+  }
+
+  &-green {
+    background-color: $c-status-green;
+  }
+
+  &-orange {
+    background-color: $c-status-orange;
+  }
+}
+
+.how-to-section {
+  margin-top: $spacing-40;
+  margin-right: $spacing-50;
+  border: 1px solid $c-grey;
+  padding: $spacing-15;
+  font-family: "Source Sans Pro";
+
+  &__title {
+    font-size: $spacing-16;
+    font-weight: bold;
+  }
+
+  &__content {
+    font-size: $spacing-14;
+    padding-top: $spacing-10;
+    margin-left: -$spacing-24;
+  }
+
+  &__nested-list {
+    list-style-type: lower-alpha;
+    margin-left: -$spacing-10
+  }
+}
+
+.qr-section {
+  margin-top: $spacing-40;
+  margin-right: $spacing-40;
+  padding: $spacing-15;
+  text-align: center;
+  font-family: "Source Sans Pro";
+
+  &__title {
+    font-size: $spacing-20;
+    font-weight: $font-weight-700;
+    padding-bottom: $spacing-15;
+  }
+}

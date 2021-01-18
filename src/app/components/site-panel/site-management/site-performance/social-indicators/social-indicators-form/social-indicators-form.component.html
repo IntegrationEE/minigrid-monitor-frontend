@@ -1,0 +1,37 @@
+<form *ngIf="form && controls"
+      [formGroup]="form">
+  <div class="wrapper">
+    <div *ngFor="let control of controls; let i = index"
+         class="fieldElements">
+      <div class="form-group"
+           [ngClass]="((i+1)%2 === 0)? 'fieldPaddingLeft' : 'fieldPaddingRight'">
+        <label [for]="control.name">
+          {{ control.label }}
+          <app-info-icon [tooltip]="control.tooltip"></app-info-icon>
+        </label>
+
+        <mat-form-field appearance="outline">
+          <input type="number"
+                 [placeholder]="control.placeholder"
+                 matInput
+                 [id]="control.name"
+                 [formControl]="form.controls[control.name]"
+                 required
+                 min="0">
+          <mat-error *ngIf="hasError(control.name)">
+            {{ getError(control.name) }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</form>
+
+<mat-card-actions class="d-flex justify-content-center mt-4">
+  <button class="green-button"
+          mat-raised-button
+          [disabled]="form?.invalid || loading"
+          (click)="onSave()">
+    {{ editMode ? 'Update data' : 'Add data' }}
+  </button>
+</mat-card-actions>

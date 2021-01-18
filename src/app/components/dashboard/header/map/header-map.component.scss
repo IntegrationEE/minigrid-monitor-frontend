@@ -1,0 +1,11 @@
+@import "../../../../shared/styles/variables";
+@import "../../../../shared/styles/colors";
+
+.defaultMarker {
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  background: #085064;
+  border: 1px solid #085064;
+}
+

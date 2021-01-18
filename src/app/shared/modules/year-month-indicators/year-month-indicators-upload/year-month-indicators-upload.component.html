@@ -1,0 +1,29 @@
+<div class="modal-container">
+  <h1 mat-dialog-title>Upload {{data.title}}</h1>
+
+  <div mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <ngx-mat-file-input [formControl]="fileControl"
+                          placeholder="Choose a file ..."
+                          accept=".xls"
+                          color="primary"
+                          required>
+      </ngx-mat-file-input>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions
+       class="dialog-buttons-container">
+    <button mat-flat-button
+            mat-dialog-close>
+      Cancel
+    </button>
+
+    <button mat-stroked-button
+            class="green-button"
+            [disabled]="fileControl.invalid || loading"
+            (click)="onUpload()">
+      Upload
+    </button>
+  </div>
+</div>

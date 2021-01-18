@@ -1,0 +1,18 @@
+@import '../../../shared/styles/variables';
+@import '../../../shared/styles/colors';
+
+.outliersColor {
+  background-color: $c-secondary-yellow;
+  border-radius: $spacing-10;
+  padding: 7px;
+}
+
+.addButton {
+  padding-top: $spacing-10;
+  padding-bottom: $spacing-10;
+  float: right;
+}
+
+.fa-times {
+  color: $c-secondary-yellow-dark;
+}

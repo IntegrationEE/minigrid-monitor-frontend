@@ -1,0 +1,127 @@
+<form *ngIf="form"
+      [formGroup]="form">
+  <div class="d-flex">
+    <div class="form-group w-40">
+      <div class="form-group mr-4">
+        <label for="name">
+          Site Name
+          <app-info-icon [tooltip]="tooltips.NAME"></app-info-icon>
+        </label>
+        <mat-form-field appearance="outline">
+          <input matInput
+                 id="name"
+                 formControlName="name"
+                 required>
+          <mat-error *ngIf="hasError('name')">
+            {{getError('name')}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group mr-4">
+        <label for="programme">
+          Programme
+          <app-info-icon [tooltip]="tooltips.PROGRAMME"></app-info-icon>
+        </label>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Select Programme ..."
+                      required
+                      id="programme"
+                      formControlName="programmeId">
+            <mat-option *ngFor="let option of programmes"
+                        [value]="option.id">
+              {{option.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-group mr-4">
+        <label for="commissioningDate">
+          Commissioning date
+          <app-info-icon [tooltip]="tooltips.COMMISSIONING_DATE"></app-info-icon>
+        </label>
+        <mat-form-field appearance="outline">
+          <input matInput
+                 [matDatepicker]="commissioningDate"
+                 required
+                 id="commissioningDate"
+                 formControlName="commissioningDate">
+          <mat-datepicker-toggle matSuffix
+                                 [for]="commissioningDate">
+          </mat-datepicker-toggle>
+          <mat-datepicker #commissioningDate
+                          [calendarHeaderComponent]="customHeader">
+          </mat-datepicker>
+          <mat-error *ngIf="hasError('commissioningDate')">
+            {{getError('commissioningDate')}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="w-100 text-right">
+      <div class="map-container w-100"
+           *ngIf="mapLayers">
+        <div leaflet
+             [leafletOptions]="options"
+             [leafletLayers]="mapLayers"
+             (leafletMapReady)="onMapReady($event)">
+          <div *ngIf="marker"
+               [leafletLayer]="marker">
+          </div>
+        </div>
+
+        <button *ngIf="showConfirmButton"
+                class="green-button mt-2"
+                mat-raised-button
+                (click)="confirmLocation()">
+          Confirm location
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label tooltip="Site Location (Latitude, Longitude)"
+           class="ellipsis-text">
+      Site location (Latitude, Longitude)
+      <app-info-icon [tooltip]="tooltips.LOCATION"></app-info-icon>
+    </label>
+    <div class="d-flex">
+      <mat-form-field appearance="outline"
+                      class="w-50">
+        <input type="number"
+               matInput
+               id="lat"
+               placeholder="e.g. 10.000615"
+               formControlName="lat"
+               required>
+        <mat-error *ngIf="hasError('lat')">
+          {{getError('lat')}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline"
+                      class="ml-4 w-50">
+        <input type="number"
+               matInput
+               id="long"
+               placeholder="e.g. 6.735819"
+               formControlName="long"
+               required>
+        <mat-error *ngIf="hasError('long')">
+          {{getError('long')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+<mat-card-actions class="d-flex justify-content-center mt-3">
+  <button class="green-button"
+          mat-raised-button
+          [disabled]="form?.invalid || loading"
+          (click)="onSaveSite()">
+    Save site info
+  </button>
+</mat-card-actions>

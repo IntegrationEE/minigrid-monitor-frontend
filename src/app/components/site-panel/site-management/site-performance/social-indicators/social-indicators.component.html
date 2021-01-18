@@ -1,0 +1,83 @@
+<form>
+  <div class="d-flex justify-content-center">
+    <div class="form-group mr-4 w-50">
+      <label for="generation">
+        Data collection date
+        <app-info-icon [tooltip]="tooltips.VISITE_DATE"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <input matInput
+               [matDatepicker]="datePicker"
+               required
+               id="commissioningDate"
+               [formControl]="visitDate">
+        <mat-datepicker-toggle matSuffix
+                               [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker
+                        [calendarHeaderComponent]="customHeader"></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group w-50">
+      <label for="topic">
+        Topic
+        <app-info-icon [tooltip]="tooltips.TOPIC"></app-info-icon>
+      </label>
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Select topic ..."
+                    required
+                    id="topic"
+                    [formControl]="topicControl">
+          <mat-option *ngFor="let option of topics"
+                      [value]="option">
+            {{option.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="loading; else showContent"
+     class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #showContent>
+  <div *ngIf="siteVisitObject"
+       class="d-flex justify-content-center">
+    <app-social-indicators-form [siteObject]="siteVisitObject"
+                                class="w-100">
+    </app-social-indicators-form>
+  </div>
+
+  <div class="title">Last site visits</div>
+
+  <div *ngFor="let item of siteVisitList; let i = index">
+    <span class="d-flex justify-content-between borderBottom"
+          [ngClass]="editVisitClass(i)"
+          *ngIf="i < maxItemsOnLoad || showAll">
+      <div>
+        {{ item.visitDate | date: 'dd/MM/yyyy' }}
+      </div>
+
+      <div>
+        last edit: {{ item.lastModified | date: 'dd/MM/yyyy' }}
+      </div>
+
+      <div [ngClass]="'pointer ' + editVisitClass(i)"
+           (click)="editVisit(item, i)">
+        {{ editIndex === i ? 'save' : 'edit' }}
+        <img [src]="editIndex >= 0 ? (editIndex === i ? icons.save : icons.edit) : icons.editGreen"
+             class="icon-small ml-2">
+      </div>
+    </span>
+  </div>
+
+  <div *ngIf="siteVisitList.length > maxItemsOnLoad">
+    <button class="show-all-button"
+            (click)="showAllVisits()">
+      {{ showAll ? 'see less...' : 'see more... ' }}
+    </button>
+  </div>
+</ng-template>
